@@ -2,8 +2,8 @@ public class Main
 {
     public static void main(String[] args)
     {
-        Ingredient nr = new Ingredient("bon", 3);
+        DisplayTextUI start = new DisplayTextUI();
 
-        System.out.println(nr.getFoodAmount() + nr.getFoodName());
+        start.run();
     }
 }
