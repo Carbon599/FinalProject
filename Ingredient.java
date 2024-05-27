@@ -4,7 +4,7 @@ public class Ingredient
     private String name;
     private int quantity;
     
-    // creates the ingredient
+    
     Ingredient(String name, int quantity)
     {
         this.name = name;

@@ -18,12 +18,33 @@ public class DisplayTextUI
     
     public void run()
     {
- 
+        // Testing only
+        Ingredient egg = new Ingredient("egg", 3);
+
+        Fridge f = new Fridge();
+
+        f.addIngredient(egg);
+        f.addIngredient(egg);
+        f.addIngredient(egg);
+
+        f.displayContents();
+  
+
+    
     while (runProgram)
     {
+        
         System.out.println("The stuff in storage: (displays the food in storage and their parameters)");
         System.out.println("Select a number between 1-4 \n 1-Sort alphabetically \n 2-Sort by quantity\n 3-Add food in storage \n4-create meal");
-        getUserInt(1,4);
+        int userInput = getUserInt(1,4);
+
+        switch(userInput)
+        {
+            case 1:
+
+            
+            
+        }
 
 
     }
@@ -31,7 +52,7 @@ public class DisplayTextUI
     }    
 
 
-
+    // returns the number that the user typed in
     private int getUserInt(int min, int max)
     {
         Scanner scn = new Scanner(System.in);
