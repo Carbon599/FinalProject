@@ -41,7 +41,7 @@ public class DisplayTextUI
         switch(userInput)
         {
             case 1:
-
+            
             
             
         }
@@ -97,5 +97,6 @@ public class DisplayTextUI
 
         return userNumber;
     }
+
 
 }

@@ -17,28 +17,29 @@ public class Fridge
         Fridge.add(ingr);
     }
 
-    public void removeIngredient()
+    public void removeIngredient(Ingredient ingr)
     {
 
     }
+
 
 
     // Sort methods
-    public void sortFridgeName()
+    public void sortIngredientName(ArrayList foodList)
     {
 
     }
 
-    public void sortFridgeAount()
+    public void sortIngredientAmount(ArrayList foodList)
     {
 
     }
     
     public void displayContents()
     {
-        for (int i = 0; i <= Fridge.size(); i++)
+        for (int i = 0; i < Fridge.size(); i++)
         {
-            System.out.println("ing 1: " + Fridge.get(i).getFoodName());
+            System.out.println("ing" +i+": " + Fridge.get(i).getFoodName());
         }
     }
 

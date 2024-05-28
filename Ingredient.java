@@ -28,6 +28,12 @@ public class Ingredient
         this.quantity = newAmount;
     }
 
+    public void createIngredient() // user creates an ingredient
+    {
+
+    }
+    
+
 
 
 
