@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Ingredient 
 {
     // The parameters for the ingredient
@@ -18,7 +20,7 @@ public class Ingredient
         return this.name;
     }
 
-    public int getFoodAmount()
+    public int getFoodAmount() 
     {
         return this.quantity;
     }
@@ -28,8 +30,14 @@ public class Ingredient
         this.quantity = newAmount;
     }
 
-    public void createIngredient() // user creates an ingredient
+    public Ingredient createIngredient() // user creates an ingredient
     {
+        Ingredient userIng = new Ingredient()
+    }
+
+    private String getUserString()
+    {
+        Scanner userInput = new Scanner(System.in);
 
     }
     

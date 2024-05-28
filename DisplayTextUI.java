@@ -24,8 +24,6 @@ public class DisplayTextUI
         Fridge f = new Fridge();
 
         f.addIngredient(egg);
-        f.addIngredient(egg);
-        f.addIngredient(egg);
 
         f.displayContents();
   
@@ -35,14 +33,30 @@ public class DisplayTextUI
     {
         
         System.out.println("The stuff in storage: (displays the food in storage and their parameters)");
-        System.out.println("Select a number between 1-4 \n 1-Sort alphabetically \n 2-Sort by quantity\n 3-Add food in storage \n4-create meal");
+        System.out.println("Select a number between 1-4 \n 1-Sort alphabetically \n 2-Sort by quantity\n 3-Manage food in storage \n4-create meal");
         int userInput = getUserInt(1,4);
 
         switch(userInput)
         {
             case 1:
+            //sort alphabetically
+            break;
+
+            case 2:
+            //sort quantity
+            break;
+
+            case 3:
+            //add or remove
+            break;
+
+            case 4:
+            //meal stuff
+            break;
             
-            
+            case 5:
+            //exit
+            break;
             
         }
 
