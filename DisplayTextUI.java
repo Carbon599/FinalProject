@@ -1,68 +1,63 @@
 import java.util.Scanner;
 
-
-
-
-
-
-
-
-
-
-
-
 public class DisplayTextUI 
 {
     int userInput;
     boolean runProgram = true;
+
+    Fridge fridge;
+
+    public DisplayTextUI() 
+    {
+        fridge = new Fridge(); // Initialize the fridge
+    }
     
     public void run()
     {
         // Testing only
         Ingredient egg = new Ingredient("egg", 3);
 
-        Fridge f = new Fridge();
+        fridge.addIngredient(egg);
 
-        f.addIngredient(egg);
+        fridge.displayContents();
 
-        f.displayContents();
-  
+        Scanner scanner = new Scanner(System.in);
 
-    
-    while (runProgram)
-    {
-        
-        System.out.println("The stuff in storage: (displays the food in storage and their parameters)");
-        System.out.println("Select a number between 1-4 \n 1-Sort alphabetically \n 2-Sort by quantity\n 3-Manage food in storage \n4-create meal");
-        int userInput = getUserInt(1,4);
-
-        switch(userInput)
+        while (runProgram)
         {
-            case 1:
-            //sort alphabetically
-            break;
+        
+            System.out.println("The stuff in storage: (displays the food in storage and their parameters)");
+            System.out.println("Select a number between 1-4 \n 1-Sort alphabetically \n 2-Sort by quantity\n 3-Manage food in storage \n4-create meal");
+            int userInput = getUserInt(1,4);
 
-            case 2:
-            //sort quantity
-            break;
+            switch(userInput)
+            {
+                case 1:
+                //sort alphabetically
 
-            case 3:
-            //add or remove
-            break;
+                    sortalphabetically();
+                break;
 
-            case 4:
-            //meal stuff
-            break;
+                case 2:
+                //sort quantity
+                break;
+
+                case 3:
+                //add or remove
+                break;
+
+                case 4:
+                //meal stuff
+                break;
             
-            case 5:
-            //exit
-            break;
+                case 5:
+                runProgram = false;
+                //exit
+                break;
             
+            }
         }
-
-
-    }
-
+    scanner.close();
     }    
 
 
@@ -107,10 +102,12 @@ public class DisplayTextUI
         // There is a valid integer, so grab that and store it in userNumber.
             userNumber = scn.nextInt();
         }
-
-
         return userNumber;
     }
-
+    private void sortalphabetically() 
+    {
+        fridge.sortFridgeByName(); // Call the sortFridgeByName method
+        fridge.displayContents(); // Display the sorted contents
+    }
 
 }
