@@ -16,9 +16,7 @@ public class DisplayTextUI
     {
         // Testing only
         Ingredient egg = new Ingredient("egg", 3);
-
         fridge.addIngredient(egg);
-
         fridge.displayContents();
 
         Scanner scanner = new Scanner(System.in);
@@ -34,19 +32,21 @@ public class DisplayTextUI
             {
                 case 1:
                 //sort alphabetically
-
                     sortalphabetically();
                 break;
 
                 case 2:
+                    sortbyquantity();
                 //sort quantity
                 break;
 
                 case 3:
+                    manageFood();
                 //add or remove
                 break;
 
                 case 4:
+                    createMeal();
                 //meal stuff
                 break;
             
@@ -80,7 +80,8 @@ public class DisplayTextUI
                 System.out.println("Number can only be "+min+".\n");
                 System.out.print(prompt);
                 }
-                else{
+                else
+                {
                 System.out.println("Number must be at least " + min + " and at most " + max + ".\n");
                 System.out.print(prompt);
                 }
@@ -108,6 +109,46 @@ public class DisplayTextUI
     {
         fridge.sortFridgeByName(); // Call the sortFridgeByName method
         fridge.displayContents(); // Display the sorted contents
+    }
+    private void sortbyquantity() 
+    {
+        fridge.sortFridgeByAmount(); // Call the sortFridgeByAmount method
+        fridge.displayContents(); // Display the sorted contents
+    }
+
+    private void manageFood() 
+    {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Select operation: \n 1-Add ingredient \n 2-Remove ingredient");
+        int operation = getUserInt(1, 2);
+
+        switch (operation) 
+        {
+            case 1:
+                // Add ingredient
+                System.out.println("Enter the name of the ingredient:");
+                String name = scanner.nextLine();
+                System.out.println("Enter the amount of the ingredient:");
+                int amount = scanner.nextInt();
+                Ingredient ingredient = new Ingredient(name, amount);
+                fridge.addIngredient(ingredient);
+                System.out.println("Ingredient added successfully.");
+                break;
+            case 2:
+                // Remove ingredient
+                System.out.println("Enter the name of the ingredient to remove:");
+                String foodName = scanner.nextLine();
+                fridge.removeIngredient(foodName);
+                System.out.println("Ingredient removed successfully.");
+                break;
+        }
+    }
+
+    private void createMeal() 
+    {
+        // Logic for creating a meal
+        System.out.println("Creating a meal...");
     }
 
 }
