@@ -44,10 +44,17 @@ public class Ingredient
         return this.quantity;
     }
 
+    public Measurements getFoodMeasurement()
+    {
+        return this.Measurements;
+    }
+
     public void setFoodAmount(int newAmount)
     {
         this.quantity = newAmount;
     }
+
+    
 
 
     

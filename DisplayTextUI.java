@@ -25,7 +25,7 @@ public class DisplayTextUI
         {
         
             System.out.println("The stuff in storage: (displays the food in storage and their parameters)");
-            System.out.println("Select a number between 1-4 \n 1-Sort alphabetically \n 2-Sort by quantity\n 3-Manage food in storage \n4-create meal");
+            System.out.println("Select a number between 1-4 \n 1-Sort alphabetically \n 2-Sort by quantity\n 3-Manage food in storage \n4-create meal \n 5-Display Stuff in the");
             int userInput = getUserInt(1,4);
 
             switch(userInput)
@@ -127,7 +127,8 @@ public class DisplayTextUI
         {
             case 1:
                 // Add ingredient
-                createIngredient();
+                fridge.addIngredient(createIngredient());
+                fridge.displayContents();
 
                 break;
             case 2:
@@ -144,14 +145,15 @@ public class DisplayTextUI
     {   
 
         String name = getUserIngName();
-        int amount = getUserIngAmount();
+        System.out.println(name);
         Measurements measurement = getIngMeasurement();
+        int amount = getUserIngAmount();
+
 
         Ingredient userIng = new Ingredient(name, amount, measurement);
 
         return userIng;
     }
-
 
     private String getUserIngName()
     {
@@ -164,13 +166,12 @@ public class DisplayTextUI
             userInput.next();
         }
 
-        String validString = userInput.toString();
+        String validString = userInput.nextLine();
 
         return validString;
         
 
     }
-
 
     private int getUserIngAmount()
     {
@@ -197,7 +198,6 @@ public class DisplayTextUI
         int input = getUserInt(1, 12);
         return Measurements.values()[input];
     }
-
 
     private void createMeal() 
     {
