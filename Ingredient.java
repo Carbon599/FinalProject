@@ -1,16 +1,35 @@
 import java.util.Scanner;
 
+enum Measurements
+{
+    tbsp,
+    tsp,
+    oz,
+    c,
+    qt,
+    pt,
+    gal,
+    lb,
+    mL,
+    g,
+    kg,
+    l,
+    amount
+}
+
 public class Ingredient 
 {
     // The parameters for the ingredient
     private String name;
     private int quantity;
+    private Measurements Measurements;
     
     
-    Ingredient(String name, int quantity)
+    Ingredient(String name, int quantity, Measurements Measurements)
     {
         this.name = name;
         this.quantity = quantity;
+        this.Measurements = Measurements;
     }
 
 
@@ -30,16 +49,7 @@ public class Ingredient
         this.quantity = newAmount;
     }
 
-    public Ingredient createIngredient() // user creates an ingredient
-    {
-        Ingredient userIng = new Ingredient()
-    }
 
-    private String getUserString()
-    {
-        Scanner userInput = new Scanner(System.in);
-
-    }
     
 
 

@@ -15,7 +15,7 @@ public class DisplayTextUI
     public void run()
     {
         // Testing only
-        Ingredient egg = new Ingredient("egg", 3);
+        Ingredient egg = new Ingredient("egg", 3,Measurements.g);
         fridge.addIngredient(egg);
         fridge.displayContents();
 
@@ -127,13 +127,8 @@ public class DisplayTextUI
         {
             case 1:
                 // Add ingredient
-                System.out.println("Enter the name of the ingredient:");
-                String name = scanner.nextLine();
-                System.out.println("Enter the amount of the ingredient:");
-                int amount = scanner.nextInt();
-                Ingredient ingredient = new Ingredient(name, amount);
-                fridge.addIngredient(ingredient);
-                System.out.println("Ingredient added successfully.");
+                createIngredient();
+
                 break;
             case 2:
                 // Remove ingredient
@@ -145,10 +140,68 @@ public class DisplayTextUI
         }
     }
 
+    private Ingredient createIngredient() // user creates an ingredient
+    {   
+
+        String name = getUserIngName();
+        int amount = getUserIngAmount();
+        Measurements measurement = getIngMeasurement();
+
+        Ingredient userIng = new Ingredient(name, amount, measurement);
+
+        return userIng;
+    }
+
+
+    private String getUserIngName()
+    {
+        System.out.println("NAME:");
+        Scanner userInput = new Scanner(System.in);
+
+        while (!userInput.hasNextLine())
+        {   
+            System.out.println("Name must not have an Integer");
+            userInput.next();
+        }
+
+        String validString = userInput.toString();
+
+        return validString;
+        
+
+    }
+
+
+    private int getUserIngAmount()
+    {
+
+        System.out.println("AMOUNT:");
+        Scanner userInput = new Scanner(System.in);
+
+        while (!userInput.hasNextInt())
+        {
+            System.out.println("Amount must not have a letter.");
+            userInput.next();
+        }
+
+        int validString = userInput.nextInt();
+
+        return validString;
+        
+
+    }
+
+    private Measurements getIngMeasurement()
+    {
+        System.out.println("Enter the appropriate measurement for the Ingredient:\n 1-TBSP\n 2-TSP\n 3-OZ\n 4-C\n 5-QT\n 6-GAL\n 7-LB\n 8-ML\n 9-G\n 10-KG\n 11-L");
+        int input = getUserInt(1, 12);
+        return Measurements.values()[input];
+    }
+
+
     private void createMeal() 
     {
         // Logic for creating a meal
         System.out.println("Creating a meal...");
     }
-
 }

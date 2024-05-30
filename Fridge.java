@@ -43,7 +43,7 @@ public class Fridge
         });
     }
 
-    public void sortFridgeByAmount() 
+    public void sortFridgeByAmount() // do this
     {
        
     }
@@ -57,17 +57,4 @@ public class Fridge
         }
     }
 
-    public static void main(String[] args) {
-        Fridge fridge = new Fridge();
-        
-        // Adding some ingredients to the fridge
-       
-        // Displaying the contents of the fridge
-       
-        // Sorting by name and displaying
-       
-        // Sorting by amount and displaying
-    
-        // Removing an ingredient and displaying
-    }
 }
