@@ -54,12 +54,6 @@ public class Ingredient
         this.quantity = newAmount;
     }
 
-    
-
-
-    
-
-
 
 
 }

@@ -55,7 +55,7 @@ public class Fridge
         int i = 0;
         for (Ingredient ingredient : fridge) 
         {
-            System.out.println("Ingredient "+i+": " + ingredient.getFoodName() + ", Amount: " + ingredient.getFoodAmount() + ingredient.getFoodMeasurement());
+            System.out.println("Ingredient "+(i+1)+": " + ingredient.getFoodName() + ", Amount: " + ingredient.getFoodAmount() + ingredient.getFoodMeasurement());
             i++;
         }
     }

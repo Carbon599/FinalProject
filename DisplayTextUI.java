@@ -25,8 +25,8 @@ public class DisplayTextUI
         {
         
             System.out.println("The stuff in storage: (displays the food in storage and their parameters)");
-            System.out.println("Select a number between 1-4 \n 1-Sort alphabetically \n 2-Sort by quantity\n 3-Manage food in storage \n4-create meal \n 5-Display Stuff in the");
-            int userInput = getUserInt(1,4);
+            System.out.println("Select a number between 1-4 \n 1-Sort alphabetically \n 2-Sort by quantity\n 3-Manage food in storage \n4-create meal \n 5-Display Stuff in the fridge\n6-Exit the program\n\n");
+            int userInput = getUserInt(1,6);
 
             switch(userInput)
             {
@@ -49,8 +49,14 @@ public class DisplayTextUI
                     createMeal();
                 //meal stuff
                 break;
-            
+
                 case 5:
+                    
+                    fridge.displayContents();
+                //meal stuff
+                break;
+            
+                case 6:
                 runProgram = false;
                 //exit
                 break;
@@ -151,7 +157,7 @@ public class DisplayTextUI
 
 
         Ingredient userIng = new Ingredient(name, amount, measurement);
-
+        System.out.println("Successfully added " + userIng.getFoodName() +" to the Fridge\n");
         return userIng;
     }
 
