@@ -15,16 +15,18 @@ public class DisplayTextUI
     public void run()
     {
         // Testing only
-        Ingredient egg = new Ingredient("egg", 3,Measurements.g);
-        fridge.addIngredient(egg);
-        fridge.displayContents();
+        fridge.addIngredient(new Ingredient("egg", 3,Measurements.g));
+        fridge.addIngredient(new Ingredient("chicken", 5,Measurements.kg));
+        fridge.addIngredient(new Ingredient("milk", 3,Measurements.gal));
+        fridge.addIngredient(new Ingredient("kiwi", 3,Measurements.units));
+
+
 
         Scanner scanner = new Scanner(System.in);
 
         while (runProgram)
         {
-        
-            System.out.println("The stuff in storage: (displays the food in storage and their parameters)");
+    
             System.out.println("Select a number between 1-4 \n 1-Sort alphabetically \n 2-Sort by quantity\n 3-Manage food in storage \n4-create meal \n 5-Display Stuff in the fridge\n6-Exit the program\n\n");
             int userInput = getUserInt(1,6);
 
