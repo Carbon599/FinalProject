@@ -5,13 +5,14 @@ public class DisplayTextUI
     int userInput;
     boolean runProgram = true;
 
-    Fridge fridge;
+    Fridge fridge = new Fridge();
+    
 
     public DisplayTextUI() 
     {
         fridge = new Fridge(); // Initialize the fridge
     }
-    
+
     public void run()
     {
         // Testing only
@@ -120,7 +121,7 @@ public class DisplayTextUI
     }
     private void sortbyquantity() 
     {
-        fridge.sortFridgeByAmount(); // Call the sortFridgeByAmount method
+        fridge.sortFridgeByQuantity(); // Call the sortFridgeByAmount method
         fridge.displayContents(); // Display the sorted contents
     }
 
