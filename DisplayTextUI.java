@@ -2,33 +2,26 @@ import java.util.Scanner;
 
 public class DisplayTextUI 
 {
-    int userInput;
     boolean runProgram = true;
-
     Fridge fridge = new Fridge();
     
 
     public DisplayTextUI() 
     {
         fridge = new Fridge(); // Initialize the fridge
-    }
-
-    public void run()
-    {
-        // Testing only
         fridge.addIngredient(new Ingredient("egg", 3,Measurements.g));
         fridge.addIngredient(new Ingredient("chicken", 5,Measurements.kg));
         fridge.addIngredient(new Ingredient("milk", 3,Measurements.gal));
         fridge.addIngredient(new Ingredient("kiwi", 3,Measurements.units));
 
+    }
 
-
-        Scanner scanner = new Scanner(System.in);
-
+    public void run()
+    {
         while (runProgram)
         {
     
-            System.out.println("Select a number between 1-4 \n 1-Sort alphabetically \n 2-Sort by quantity\n 3-Manage food in storage \n4-create meal \n 5-Display Stuff in the fridge\n6-Exit the program\n\n");
+            System.out.println("---------------------------\nSelect a number between 1-4 \n 1-Sort alphabetically \n 2-Sort by quantity\n 3-Manage food in storage \n4-create meal \n 5-Display Stuff in the fridge\n6-Exit the program\n\n---------------------------\n");
             int userInput = getUserInt(1,6);
 
             switch(userInput)
@@ -66,7 +59,6 @@ public class DisplayTextUI
             
             }
         }
-    scanner.close();
     }    
 
 
@@ -114,15 +106,20 @@ public class DisplayTextUI
         }
         return userNumber;
     }
+
     private void sortalphabetically() 
     {
         fridge.sortFridgeByName(); // Call the sortFridgeByName method
+        wait(1000);
         fridge.displayContents(); // Display the sorted contents
+        wait(1000);
     }
     private void sortbyquantity() 
     {
         fridge.sortFridgeByQuantity(); // Call the sortFridgeByAmount method
+        wait(1000);
         fridge.displayContents(); // Display the sorted contents
+        wait(1000);
     }
 
     private void manageFood() 
@@ -169,15 +166,7 @@ public class DisplayTextUI
         System.out.println("NAME:");
         Scanner userInput = new Scanner(System.in);
 
-        while (!userInput.hasNextLine())
-        {   
-            System.out.println("Name must not have an Integer");
-            userInput.next();
-        }
-
-        String validString = userInput.nextLine();
-
-        return validString;
+        return userInput.nextLine();
         
 
     }
@@ -193,17 +182,15 @@ public class DisplayTextUI
             System.out.println("Amount must not have a letter.");
             userInput.next();
         }
-
-        int validString = userInput.nextInt();
-
-        return validString;
+        
+        return userInput.nextInt();
         
 
     }
 
     private Measurements getIngMeasurement()
     {
-        System.out.println("Enter the appropriate measurement for the Ingredient:\n 1-TBSP\n 2-TSP\n 3-OZ\n 4-C\n 5-QT\n 6-GAL\n 7-LB\n 8-ML\n 9-G\n 10-KG\n 11-L");
+        System.out.println("Enter the appropriate measurement for the Ingredient:\n 1-TBSP\n 2-TSP\n 3-OZ\n 4-C\n 5-QT\n 6-GAL\n 7-LB\n 8-ML\n 9-G\n 10-KG\n 11-L\n 12-L");
         int input = getUserInt(1, 12);
         return Measurements.values()[input];
     }
@@ -212,5 +199,17 @@ public class DisplayTextUI
     {
         // Logic for creating a meal
         System.out.println("Creating a meal...");
+    }
+
+    private static void wait(int ms)// thing waits
+    {
+        try
+        {
+            Thread.sleep(ms);
+        }
+        catch(InterruptedException ex)
+        {
+            Thread.currentThread().interrupt();
+        }
     }
 }
