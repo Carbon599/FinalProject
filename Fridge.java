@@ -48,10 +48,10 @@ public class Fridge
 
     public void sortFridgeByQuantity()
     {
-        int start = 0;
 
-        for (int i = 0; i < fridge.size(); i++)
+        for (int i = 0; i < fridge.size()-1; i++)
         {
+            
             if (fridge.get(i).getFoodAmount()>fridge.get(i+1).getFoodAmount())
             {
                 Collections.swap(fridge, i, (i+1));
