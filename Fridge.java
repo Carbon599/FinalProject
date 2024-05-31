@@ -36,13 +36,8 @@ public class Fridge
     // Sort methods
     public void sortFridgeByName() 
     {
-        Collections.sort(fridge, new Comparator<Ingredient>() 
-        {
-            public int compare(Ingredient i1, Ingredient i2) 
-            {
-                return i1.getFoodName().compareToIgnoreCase(i2.getFoodName());
-            }
-        });
+        MergeSort.mergeSort(fridge);
+
     }
 
 
@@ -51,13 +46,10 @@ public class Fridge
 
         for (int i = 0; i < fridge.size()-1; i++)
         {
-            
             if (fridge.get(i).getFoodAmount()>fridge.get(i+1).getFoodAmount())
             {
                 Collections.swap(fridge, i, (i+1));
             }
-            
-
         }
 
     }

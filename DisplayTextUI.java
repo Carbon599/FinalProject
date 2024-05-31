@@ -11,8 +11,8 @@ public class DisplayTextUI
         fridge = new Fridge(); // Initialize the fridge
         fridge.addIngredient(new Ingredient("egg", 3,Measurements.g));
         fridge.addIngredient(new Ingredient("chicken", 5,Measurements.kg));
-        fridge.addIngredient(new Ingredient("milk", 3,Measurements.gal));
-        fridge.addIngredient(new Ingredient("kiwi", 3,Measurements.units));
+        fridge.addIngredient(new Ingredient("milk", 4,Measurements.gal));
+        fridge.addIngredient(new Ingredient("kiwi", 7,Measurements.units));
 
     }
 
@@ -21,18 +21,18 @@ public class DisplayTextUI
         while (runProgram)
         {
     
-            System.out.println("---------------------------\nSelect a number between 1-4 \n 1-Sort alphabetically \n 2-Sort by quantity\n 3-Manage food in storage \n4-create meal \n 5-Display Stuff in the fridge\n6-Exit the program\n\n---------------------------\n");
+            System.out.println("---------------------------\nSelect a number between 1-4 \n 1-Sort alphabetically \n 2-Sort by quantity\n 3-Manage food in storage \n 4-create meal \n 5-Display Stuff in the fridge\n 6-Exit the program\n\n---------------------------\n");
             int userInput = getUserInt(1,6);
 
             switch(userInput)
             {
                 case 1:
                 //sort alphabetically
-                    sortalphabetically();
+                    sortAlphabetically();
                 break;
 
                 case 2:
-                    sortbyquantity();
+                    sortByQuantity();
                 //sort quantity
                 break;
 
@@ -107,14 +107,17 @@ public class DisplayTextUI
         return userNumber;
     }
 
-    private void sortalphabetically() 
+
+    
+    private void sortAlphabetically() 
     {
         fridge.sortFridgeByName(); // Call the sortFridgeByName method
         wait(1000);
+        System.out.println("I--- The Sorted List ---I");
         fridge.displayContents(); // Display the sorted contents
         wait(1000);
     }
-    private void sortbyquantity() 
+    private void sortByQuantity() 
     {
         fridge.sortFridgeByQuantity(); // Call the sortFridgeByAmount method
         wait(1000);
