@@ -43,10 +43,8 @@ public class Fridge
         });
     }
 
-    public void sortFridgeByAmount() // do this
-    {
-       
-    }
+    //public  sortFridgeByAmount() // do this
+
 
     // Display method
     public void displayContents() 
