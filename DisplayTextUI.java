@@ -44,6 +44,7 @@ public class DisplayTextUI
                 case 4:
                     createMeal();
                 //meal stuff
+                
                 break;
 
                 case 5:
@@ -200,6 +201,14 @@ public class DisplayTextUI
 
     private void createMeal() 
     {
+
+        //ok so
+        //Ask the user for the name of the meal
+        // ask the user for the ingredients that are required for the meal
+        // user can add x amount of ingredients. something like:   1st pass:"1-add ingredient 2-finish"  2nd pass: "1-add another ingredient 2-finish meal"
+
+
+
         // Logic for creating a meal
         System.out.println("Creating a meal...");
     }

@@ -1,7 +1,6 @@
-import java.security.PublicKey;
+
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 public class Fridge 
 {
@@ -53,9 +52,6 @@ public class Fridge
         }
 
     }
-
-    //public  sortFridgeByAmount() // do this
-
 
     // Display method
     public void displayContents() 
