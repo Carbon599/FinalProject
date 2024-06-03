@@ -44,6 +44,9 @@ public class DisplayTextUI
                 case 4:
                     createMeal();
                 //meal stuff
+                // has a set of premade meals
+                // user has the ability to create meals
+                // 
                 
                 break;
 
@@ -108,6 +111,39 @@ public class DisplayTextUI
         return userNumber;
     }
 
+    private String getUserIngName()// returns string
+    {
+        System.out.println("NAME:");
+        Scanner userInput = new Scanner(System.in);
+
+        return userInput.nextLine();
+        
+
+    }
+
+    private int getUserIngAmount() // returns int
+    {
+
+        System.out.println("AMOUNT:");
+        Scanner userInput = new Scanner(System.in);
+
+        while (!userInput.hasNextInt())
+        {
+            System.out.println("Amount must not have a letter.");
+            userInput.next();
+        }
+        
+        return userInput.nextInt();
+        
+
+    }
+
+    private Measurements getIngMeasurement() // returns the measurement
+    {
+        System.out.println("Enter the appropriate measurement for the Ingredient:\n 1-TBSP\n 2-TSP\n 3-OZ\n 4-C\n 5-QT\n 6-GAL\n 7-LB\n 8-ML\n 9-G\n 10-KG\n 11-L\n 12-L");
+        int input = getUserInt(1, 12);
+        return Measurements.values()[input];
+    }
 
     
     private void sortAlphabetically() 
@@ -118,6 +154,7 @@ public class DisplayTextUI
         fridge.displayContents(); // Display the sorted contents
         wait(1000);
     }
+
     private void sortByQuantity() 
     {
         fridge.sortFridgeByQuantity(); // Call the sortFridgeByAmount method
@@ -165,39 +202,6 @@ public class DisplayTextUI
         return userIng;
     }
 
-    private String getUserIngName()
-    {
-        System.out.println("NAME:");
-        Scanner userInput = new Scanner(System.in);
-
-        return userInput.nextLine();
-        
-
-    }
-
-    private int getUserIngAmount()
-    {
-
-        System.out.println("AMOUNT:");
-        Scanner userInput = new Scanner(System.in);
-
-        while (!userInput.hasNextInt())
-        {
-            System.out.println("Amount must not have a letter.");
-            userInput.next();
-        }
-        
-        return userInput.nextInt();
-        
-
-    }
-
-    private Measurements getIngMeasurement()
-    {
-        System.out.println("Enter the appropriate measurement for the Ingredient:\n 1-TBSP\n 2-TSP\n 3-OZ\n 4-C\n 5-QT\n 6-GAL\n 7-LB\n 8-ML\n 9-G\n 10-KG\n 11-L\n 12-L");
-        int input = getUserInt(1, 12);
-        return Measurements.values()[input];
-    }
 
     private void createMeal() 
     {
