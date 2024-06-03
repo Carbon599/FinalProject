@@ -3,7 +3,9 @@ import java.util.Scanner;
 public class DisplayTextUI 
 {
     boolean runProgram = true;
+    //initialize
     Fridge fridge = new Fridge();
+    Meal meal = new Meal();
     
 
     public DisplayTextUI() 
@@ -42,7 +44,7 @@ public class DisplayTextUI
                 break;
 
                 case 4:
-                    createMeal();
+                    manageMeals();
                 //meal stuff
                 // has a set of premade meals
                 // user has the ability to create meals
@@ -111,42 +113,7 @@ public class DisplayTextUI
         return userNumber;
     }
 
-    private String getUserIngName()// returns string
-    {
-        System.out.println("NAME:");
-        Scanner userInput = new Scanner(System.in);
-
-        return userInput.nextLine();
-        
-
-    }
-
-    private int getUserIngAmount() // returns int
-    {
-
-        System.out.println("AMOUNT:");
-        Scanner userInput = new Scanner(System.in);
-
-        while (!userInput.hasNextInt())
-        {
-            System.out.println("Amount must not have a letter.");
-            userInput.next();
-        }
-        
-        return userInput.nextInt();
-        
-
-    }
-
-    private Measurements getIngMeasurement() // returns the measurement
-    {
-        System.out.println("Enter the appropriate measurement for the Ingredient:\n 1-TBSP\n 2-TSP\n 3-OZ\n 4-C\n 5-QT\n 6-GAL\n 7-LB\n 8-ML\n 9-G\n 10-KG\n 11-L\n 12-L");
-        int input = getUserInt(1, 12);
-        return Measurements.values()[input];
-    }
-
-    
-    private void sortAlphabetically() 
+    private void sortAlphabetically() // 
     {
         fridge.sortFridgeByName(); // Call the sortFridgeByName method
         wait(1000);
@@ -163,10 +130,11 @@ public class DisplayTextUI
         wait(1000);
     }
 
-    private void manageFood() 
+    private void manageFood() // 
     {
+        Ingredient newIngredient = new Ingredient(null, 0, null); //idk but it works
         Scanner scanner = new Scanner(System.in);
-
+        
         System.out.println("Select operation: \n 1-Add ingredient \n 2-Remove ingredient");
         int operation = getUserInt(1, 2);
 
@@ -174,7 +142,7 @@ public class DisplayTextUI
         {
             case 1:
                 // Add ingredient
-                fridge.addIngredient(createIngredient());
+                fridge.addIngredient(newIngredient.createIngredient());
                 fridge.displayContents();
 
                 break;
@@ -188,33 +156,39 @@ public class DisplayTextUI
         }
     }
 
-    private Ingredient createIngredient() // user creates an ingredient
-    {   
-
-        String name = getUserIngName();
-        System.out.println(name);
-        Measurements measurement = getIngMeasurement();
-        int amount = getUserIngAmount();
-
-
-        Ingredient userIng = new Ingredient(name, amount, measurement);
-        System.out.println("Successfully added " + userIng.getFoodName() +" to the Fridge\n");
-        return userIng;
-    }
-
-
-    private void createMeal() 
+    private void manageMeals() // 
     {
 
         //ok so
         //Ask the user for the name of the meal
         // ask the user for the ingredients that are required for the meal
         // user can add x amount of ingredients. something like:   1st pass:"1-add ingredient 2-finish"  2nd pass: "1-add another ingredient 2-finish meal"
+        wait(400);
+        System.out.println("Kitchen::::: \n 1-Create a Meal\n 2-View Meals Available 3-Remove Meals\n 4-Back");
+        int userInput = getUserInt(1, 2);
 
+        switch (userInput) {
+            case 1:
+                ;
+                break;
+            case 2:
+            
+                break;
+
+            case 3:
+                
+                break;
+
+            case 4:
+            
+                break;
+        
+    
+        }
 
 
         // Logic for creating a meal
-        System.out.println("Creating a meal...");
+       // System.out.println("Creating a meal...");
     }
 
     private static void wait(int ms)// thing waits
