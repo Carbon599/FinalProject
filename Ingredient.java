@@ -14,7 +14,7 @@ enum Measurements
     g,
     kg,
     l,
-    units
+    pc
 }
 
 public class Ingredient 

@@ -21,7 +21,9 @@ public class Fridge
     }
 
     public void removeIngredient(String foodName) 
-    {
+    {   
+        
+        System.out.println(foodName + " removed from the pantry.");
         for (int i = 0; i < fridge.size(); i++) 
         {
             if (fridge.get(i).getFoodName().equalsIgnoreCase(foodName)) 
@@ -61,7 +63,7 @@ public class Fridge
         int i = 0;
         for (Ingredient ingredient : fridge) 
         {
-            System.out.println("Ingredient "+(i+1)+": " + ingredient.getFoodName() + ", Amount: " + ingredient.getFoodAmount() + ingredient.getFoodMeasurement());
+            System.out.println(">> " + ingredient.getFoodName() + ", " + ingredient.getFoodAmount() + ingredient.getFoodMeasurement());
             i++;
         }
         System.out.println("\nI-----------------------------I\n");

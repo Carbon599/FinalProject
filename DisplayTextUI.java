@@ -14,7 +14,7 @@ public class DisplayTextUI
         fridge.addIngredient(new Ingredient("egg", 3,Measurements.g));
         fridge.addIngredient(new Ingredient("chicken", 5,Measurements.kg));
         fridge.addIngredient(new Ingredient("milk", 4,Measurements.gal));
-        fridge.addIngredient(new Ingredient("kiwi", 7,Measurements.units));
+        fridge.addIngredient(new Ingredient("kiwi", 7,Measurements.pc));
 
     }
 
@@ -24,7 +24,7 @@ public class DisplayTextUI
         {
 
             fridge.displayContents();
-            System.out.println("---------------------------\nSelect a number between 1-4 \n 1-Sort alphabetically \n 2-Sort by quantity\n 3-Manage food in storage \n 4-create meal \n 5-Display Stuff in the fridge\n 6-Exit the program\n\n---------------------------\n");
+            System.out.println("---------------------------\nSelect a number between 1-4 \n---------------------------\nI   1-Sort alphabetically \nII  2-Sort by quantity\nIII 3-Manage food in storage \nIV  4-create meal \nV   5-Display Stuff in the fridge\nVI  6-Exit the program\n\n---------------------------\n");
             int userInput = getUserInt(1,6);
 
             switch(userInput)
@@ -136,8 +136,8 @@ public class DisplayTextUI
         Ingredient newIngredient = new Ingredient(null, 0, null); //idk but it works
         Scanner scanner = new Scanner(System.in);
         
-        System.out.println("Select operation: \n 1-Add ingredient \n 2-Remove ingredient");
-        int operation = getUserInt(1, 2);
+        System.out.println("Select operation: \n 1-Add ingredient \n 2-Remove ingredient \n 3-Back");
+        int operation = getUserInt(1, 3);
 
         switch (operation) 
         {
@@ -151,8 +151,13 @@ public class DisplayTextUI
                 // Remove ingredient
                 System.out.println("Enter the name of the ingredient to remove:");
                 String foodName = scanner.nextLine();
+                wait(450);
                 fridge.removeIngredient(foodName);
                 System.out.println("Ingredient removed successfully.");
+                wait(750);
+                break;
+            case 3:
+
                 break;
         }
     }
