@@ -118,17 +118,14 @@ public class DisplayTextUI
     {
         fridge.sortFridgeByName(); // Call the sortFridgeByName method
         wait(750);
-        System.out.println("I--- The Sorted List ---I");
-        fridge.displayContents(); // Display the sorted contents
-        wait(750);
+
     }
 
     private void sortByQuantity() 
     {
         fridge.sortFridgeByQuantity(); // Call the sortFridgeByAmount method
         wait(750);
-        fridge.displayContents(); // Display the sorted contents
-        wait(750);
+
     }
 
     private void manageFood() // 
