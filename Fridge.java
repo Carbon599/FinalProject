@@ -56,6 +56,7 @@ public class Fridge
     // Display method
     public void displayContents() 
     {
+        System.out.println("\nI-----Stuff in the fridge-----I\n");
         System.out.println("Stuff in the fridge: (everything is in the fridge [real]) \n");
         int i = 0;
         for (Ingredient ingredient : fridge) 
@@ -63,7 +64,7 @@ public class Fridge
             System.out.println("Ingredient "+(i+1)+": " + ingredient.getFoodName() + ", Amount: " + ingredient.getFoodAmount() + ingredient.getFoodMeasurement());
             i++;
         }
-        System.out.println("\n");
+        System.out.println("\nI-----------------------------I\n");
     }
 
 }
