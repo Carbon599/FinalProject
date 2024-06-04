@@ -4,8 +4,19 @@ public class DisplayTextUI
 {
     boolean runProgram = true;
     //initialize some things
-    Fridge fridge = new Fridge();
-    Meal meal = new Meal();
+    private Fridge fridge = new Fridge();
+    private Meal meal = new Meal();
+    // some stuff
+    private String longTextWall = "---------------------------\n"+
+    "Select a number between 1-4 \n"+
+    "---------------------------\n"+
+    "I   1-Sort alphabetically \n"+
+    "II  2-Sort by quantity\n"+
+    "III 3-Manage food in storage \n"+
+    "IV  4-create meal \n"+
+    "V   5-Display Stuff in the fridge\n"+
+    "VI  6-Exit the program\n"+
+    "\n---------------------------\n";
     
 
     public DisplayTextUI() 
@@ -23,9 +34,10 @@ public class DisplayTextUI
         while (runProgram)
         {
 
+
             fridge.displayContents();
-            System.out.println("---------------------------\nSelect a number between 1-4 \n---------------------------\nI   1-Sort alphabetically \nII  2-Sort by quantity\nIII 3-Manage food in storage \nIV  4-create meal \nV   5-Display Stuff in the fridge\nVI  6-Exit the program\n\n---------------------------\n");
-            int userInput = getUserInt(1,6);
+            System.out.println(longTextWall);
+            int userInput = getUserInt(1,5);
 
             switch(userInput)
             {
@@ -52,12 +64,6 @@ public class DisplayTextUI
                 break;
 
                 case 5:
-                    
-                    fridge.displayContents();
-                //meal stuff
-                break;
-            
-                case 6:
                 runProgram = false;
                 //exit
                 break;
