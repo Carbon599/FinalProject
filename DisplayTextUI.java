@@ -3,14 +3,14 @@ import java.util.Scanner;
 public class DisplayTextUI 
 {
     boolean runProgram = true;
-    //initialize
+    //initialize some things
     Fridge fridge = new Fridge();
     Meal meal = new Meal();
     
 
     public DisplayTextUI() 
     {
-        fridge = new Fridge(); // Initialize the fridge
+        fridge = new Fridge(); // Initialize the fridge and add some stuff in it
         fridge.addIngredient(new Ingredient("egg", 3,Measurements.g));
         fridge.addIngredient(new Ingredient("chicken", 5,Measurements.kg));
         fridge.addIngredient(new Ingredient("milk", 4,Measurements.gal));
@@ -29,27 +29,25 @@ public class DisplayTextUI
 
             switch(userInput)
             {
-                case 1:
-                //sort alphabetically
+                case 1: //sort alphabetically
                     sortAlphabetically();
                 break;
 
-                case 2:
+                case 2: //sort quantity
                     sortByQuantity();
-                //sort quantity
+
                 break;
 
-                case 3:
+                case 3: //add or remove meals
                     manageFood();
-                //add or remove
+
                 break;
 
                 case 4:
                     manageMeals();
-                //meal stuff
                 // has a set of premade meals
                 // user has the ability to create meals
-                // 
+                
                 
                 break;
 
@@ -128,8 +126,12 @@ public class DisplayTextUI
 
     }
 
-    private void manageFood() // 
+    private void manageFood() 
     {
+        /*
+         manageFood() gives the user the option to add or remove ingredients from the "fridge"
+         
+         */
         Ingredient newIngredient = new Ingredient(null, 0, null); //idk but it works
         Scanner scanner = new Scanner(System.in);
         
@@ -159,13 +161,14 @@ public class DisplayTextUI
         }
     }
 
-    private void manageMeals() // 
+    private void manageMeals() 
     {
 
-        //ok so
-        //Ask the user for the name of the meal
-        // ask the user for the ingredients that are required for the meal
+        //ok so this method manages meals // they can create their own meal and even remove some
+        // Ask the user for the name of the meal
+        // asks the user for the ingredients that are required for the meal
         // user can add x amount of ingredients. something like:   1st pass:"1-add ingredient 2-finish"  2nd pass: "1-add another ingredient 2-finish meal"
+
         wait(400);
         System.out.println("Kitchen::::: \n 1-Create a Meal\n 2-View Meals Available 3-Remove Meals\n 4-Back");
         int userInput = getUserInt(1, 2);
@@ -194,7 +197,7 @@ public class DisplayTextUI
        // System.out.println("Creating a meal...");
     }
 
-    private static void wait(int ms)// thing waits
+    private static void wait(int ms)// thing waits in miliseconds
     {
         try
         {

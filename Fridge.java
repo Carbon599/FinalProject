@@ -9,7 +9,7 @@ public class Fridge
     private ArrayList<Ingredient> fridge;
 
 
-    public Fridge() 
+    public Fridge() // called to create a fridge arraylist
     {
         fridge = new ArrayList<Ingredient>();
     }
@@ -20,7 +20,7 @@ public class Fridge
         fridge.add(ingr);
     }
 
-    public void removeIngredient(String foodName) 
+    public void removeIngredient(String foodName) // removes whatever the ingredient the user typed in
     {   
         
         System.out.println(foodName + " removed from the pantry.");
@@ -35,14 +35,16 @@ public class Fridge
     }
 
     // Sort methods
-    public void sortFridgeByName() 
+    public void sortFridgeByName() //erm
     {
+        
         MergeSort.mergeSort(fridge);
+    
 
     }
 
 
-    public void sortFridgeByQuantity()
+    public void sortFridgeByQuantity()// sorts the items in the fridge by amount (disregards the actual measurement)
     {
 
         for (int i = 0; i < fridge.size()-1; i++)
@@ -56,14 +58,13 @@ public class Fridge
     }
 
     // Display method
-    public void displayContents() 
+    public void displayContents() //display the items in the fridge
     {
         System.out.println("\nI-----Stuff in the fridge-----I\n");
-        int i = 0;
+
         for (Ingredient ingredient : fridge) 
         {
             System.out.println(">> " + ingredient.getFoodName() + ", " + ingredient.getFoodAmount() + ingredient.getFoodMeasurement());
-            i++;
         }
         System.out.println("\nI-----------------------------I\n");
     }

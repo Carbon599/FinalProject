@@ -1,6 +1,6 @@
 import java.util.Scanner;
-
-enum Measurements
+// measurments the user gets to choose from
+enum Measurements 
 {
     tbsp,
     tsp,
@@ -75,7 +75,7 @@ public class Ingredient
 
     private Measurements getIngMeasurement() // returns the measurement
     {
-        System.out.println("Enter the appropriate measurement for the Ingredient:\n 1-TBSP\n 2-TSP\n 3-OZ\n 4-C\n 5-QT\n 6-GAL\n 7-LB\n 8-ML\n 9-G\n 10-KG\n 11-L\n 12-L");
+        System.out.println("Enter the appropriate measurement for the Ingredient:\n 1-TBSP\n 2-TSP\n 3-OZ\n 4-C\n 5-QT\n 6-GAL\n 7-LB\n 8-ML\n 9-G\n 10-KG\n 11-L\n 12-pc (piece/s)");
         int input = getUserInt(1, 12);
         return Measurements.values()[input];
     }
