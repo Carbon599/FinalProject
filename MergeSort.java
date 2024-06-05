@@ -28,7 +28,7 @@ public class MergeSort
     
     while (!left.isEmpty() && !right.isEmpty())
     {
-      if (left.get(0).getFoodAmount() <= right.get(0).getFoodAmount())
+      if (left.get(0).getFoodName().compareTo(right.get(0).getFoodName()) >= right.get(0).getFoodName().compareTo(left.get(0).getFoodName()))
       {
         ret.add(left.get(0));
         left.remove(0);

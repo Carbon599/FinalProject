@@ -144,13 +144,12 @@ public class DisplayTextUI
         System.out.println("Select operation: \n 1-Add ingredient \n 2-Remove ingredient \n 3-Back");
         int operation = getUserInt(1, 3);
 
-        switch (operation) 
+        switch (operation) // will maybe add a feature where you can change the amount of the specified ingredient
         {
             case 1:
                 // Add ingredient
                 fridge.addIngredient(newIngredient.createIngredient());
                 fridge.displayContents();
-
                 break;
             case 2:
                 // Remove ingredient
