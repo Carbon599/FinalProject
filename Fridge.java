@@ -6,14 +6,8 @@ public class Fridge
 {
 
     // Create a list that contains the ingredients (the "storage")
-    private ArrayList<Ingredient> fridge;
+    private ArrayList<Ingredient> fridge = new ArrayList<Ingredient>();
 
-
-    public Fridge() // called to create a fridge arraylist
-    {
-        fridge = new ArrayList<Ingredient>();
-    }
-    
     // Add or remove methods
     public void addIngredient(Ingredient ingr) 
     {

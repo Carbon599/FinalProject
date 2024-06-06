@@ -1,12 +1,12 @@
 import java.util.Scanner;
 
-public class DisplayTextUI 
+public class User 
 {
-    boolean runProgram = true;
     //initialize some things
-    private Fridge fridge = new Fridge();
-    private Meal meal = new Meal();
-    // some stuff
+    boolean runProgram = true;
+    Fridge fridge = new Fridge();
+    ListOfMeals meal = new ListOfMeals();
+
     private String longTextWall = "---------------------------\n"+
     "Select a number between 1-4 \n"+
     "---------------------------\n"+
@@ -18,8 +18,7 @@ public class DisplayTextUI
     "VI  6-Exit the program\n"+
     "\n---------------------------\n";
     
-
-    public DisplayTextUI() 
+    User() 
     {
         fridge = new Fridge(); // Initialize the fridge and add some stuff in it
         fridge.addIngredient(new Ingredient("egg", 3,Measurements.g));
@@ -33,8 +32,6 @@ public class DisplayTextUI
     {
         while (runProgram)
         {
-
-
             fridge.displayContents();
             System.out.println(longTextWall);
             int userInput = getUserInt(1,5);
@@ -58,8 +55,7 @@ public class DisplayTextUI
                 case 4:
                     manageMeals();
                 // has a set of premade meals
-                // user has the ability to create meals
-                
+                // user has the ability to create meals   
                 
                 break;
 
@@ -67,13 +63,98 @@ public class DisplayTextUI
                 runProgram = false;
                 //exit
                 break;
-            
             }
         }
     }    
 
 
-    // returns the number that the user typed in
+
+
+    private void sortAlphabetically() // 
+    {
+        fridge.sortFridgeByName(); // Call the sortFridgeByName method
+        wait(750);
+
+    }
+
+    private void sortByQuantity() 
+    {
+        fridge.sortFridgeByQuantity(); // Call the sortFridgeByAmount method
+        wait(750);
+
+    }
+
+    private void manageFood() 
+    {
+        /*
+         manageFood() gives the user the option to add or remove ingredients from the "fridge"
+         
+         */
+        Ingredient newIngredient = new Ingredient(null, 0, null); //idk but it works
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("Select operation: \n 1-Add ingredient \n 2-Remove ingredient \n 3-Back");
+        int operation = getUserInt(1, 3);
+
+        switch (operation) // will maybe add a feature where you can change the amount of the specified ingredient
+        {
+            case 1:
+                // Add ingredient
+                fridge.addIngredient(createIngredient());
+                fridge.displayContents();
+                break;
+            case 2:
+                // Remove ingredient
+                System.out.println("Enter the name of the ingredient to remove:");
+                String foodName = scanner.nextLine();
+                wait(450);
+                fridge.removeIngredient(foodName);
+                System.out.println("Ingredient removed successfully.");
+                wait(750);
+                break;
+            case 3:
+
+                break;
+        }
+    }
+
+    private void manageMeals() 
+    {
+
+        //ok so this method manages meals // they can create their own meal and even remove some
+        // Ask the user for the name of the meal
+        // asks the user for the ingredients that are required for the meal
+        // user can add x amount of ingredients. something like:   1st pass:"1-add ingredient 2-finish"  2nd pass: "1-add another ingredient 2-finish meal"
+
+        wait(400);
+        System.out.println("Kitchen::::: \n 1-Create a Meal\n 2-View Meals Available 3-Remove Meals\n 4-Back");
+        int userInput = getUserInt(1, 2);
+
+        switch (userInput) {
+            case 1:
+                //createMeal();
+                break;
+            case 2:
+            
+                break;
+
+            case 3:
+                
+                break;
+
+            case 4:
+            
+                break;
+        
+    
+        }
+
+
+        // Logic for creating a meal
+       // System.out.println("Creating a meal...");
+    }
+
+        // returns the number that the user typed in
     private int getUserInt(int min, int max)
     {
         Scanner scn = new Scanner(System.in);
@@ -81,7 +162,7 @@ public class DisplayTextUI
         int userNumber = min - 1; // Set userNumber to be less than min, so that we enter the loop.
         String prompt = "Enter an integer between " + min + " and " + max + ": ";
         boolean repeat = false;
-   
+    
         while (userNumber < min || userNumber > max) // Note: || means or
         {
             // Modify the prompt based on whether we are repeating or not.
@@ -117,89 +198,52 @@ public class DisplayTextUI
         }
         return userNumber;
     }
-
-    private void sortAlphabetically() // 
+    private Measurements getIngMeasurement() // returns the measurement
     {
-        fridge.sortFridgeByName(); // Call the sortFridgeByName method
-        wait(750);
-
+        System.out.println("Enter the appropriate measurement for the Ingredient:\n 1-TBSP\n 2-TSP\n 3-OZ\n 4-C\n 5-QT\n 6-GAL\n 7-LB\n 8-ML\n 9-G\n 10-KG\n 11-L\n 12-pc (piece/s)");
+        int input = getUserInt(1, 12);
+        return Measurements.values()[input];
     }
-
-    private void sortByQuantity() 
-    {
-        fridge.sortFridgeByQuantity(); // Call the sortFridgeByAmount method
-        wait(750);
-
-    }
-
-    private void manageFood() 
-    {
-        /*
-         manageFood() gives the user the option to add or remove ingredients from the "fridge"
-         
-         */
-        Ingredient newIngredient = new Ingredient(null, 0, null); //idk but it works
-        Scanner scanner = new Scanner(System.in);
-        
-        System.out.println("Select operation: \n 1-Add ingredient \n 2-Remove ingredient \n 3-Back");
-        int operation = getUserInt(1, 3);
-
-        switch (operation) // will maybe add a feature where you can change the amount of the specified ingredient
-        {
-            case 1:
-                // Add ingredient
-                fridge.addIngredient(newIngredient.createIngredient());
-                fridge.displayContents();
-                break;
-            case 2:
-                // Remove ingredient
-                System.out.println("Enter the name of the ingredient to remove:");
-                String foodName = scanner.nextLine();
-                wait(450);
-                fridge.removeIngredient(foodName);
-                System.out.println("Ingredient removed successfully.");
-                wait(750);
-                break;
-            case 3:
-
-                break;
-        }
-    }
-
-    private void manageMeals() 
-    {
-
-        //ok so this method manages meals // they can create their own meal and even remove some
-        // Ask the user for the name of the meal
-        // asks the user for the ingredients that are required for the meal
-        // user can add x amount of ingredients. something like:   1st pass:"1-add ingredient 2-finish"  2nd pass: "1-add another ingredient 2-finish meal"
-
-        wait(400);
-        System.out.println("Kitchen::::: \n 1-Create a Meal\n 2-View Meals Available 3-Remove Meals\n 4-Back");
-        int userInput = getUserInt(1, 2);
-
-        switch (userInput) {
-            case 1:
-                ;
-                break;
-            case 2:
-            
-                break;
-
-            case 3:
-                
-                break;
-
-            case 4:
-            
-                break;
-        
     
+    private int getUserIngAmount() // returns int
+    {
+
+        System.out.println("AMOUNT:");
+        Scanner userInput = new Scanner(System.in);
+
+        while (!userInput.hasNextInt())
+        {
+            System.out.println("Amount must not have a letter.");
+            userInput.next();
         }
+        
+        return userInput.nextInt();
+        
+
+    }
 
 
-        // Logic for creating a meal
-       // System.out.println("Creating a meal...");
+    public String getUserIngName()// returns string
+    {
+        System.out.println("NAME:");
+        Scanner userInput = new Scanner(System.in);
+
+        return userInput.nextLine();
+        
+
+    }
+
+    public Ingredient createIngredient() // user creates an ingredient //also used in meals
+    {   
+
+        String name = getUserIngName();
+        Measurements measurement = getIngMeasurement();
+        int amount = getUserIngAmount();
+
+
+        Ingredient userIng = new Ingredient(name, amount, measurement);
+        System.out.println("Successfully added " + userIng.getFoodName() +" to the Fridge\n");
+        return userIng;
     }
 
     private static void wait(int ms)// thing waits in miliseconds
