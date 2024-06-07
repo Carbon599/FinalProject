@@ -135,7 +135,7 @@ public class User
                 createMeal();
                 break;
             case 2:
-            
+                
                 break;
 
             case 3:
@@ -208,7 +208,7 @@ public class User
         return Measurements.values()[input];
     }
     
-    private float getUserIngAmount() // returns int
+    private float getUserIngAmount() // returns float
     {
 
         System.out.println("AMOUNT:");
@@ -293,6 +293,8 @@ public class User
 
             Meal e = new Meal(name, listOfIng);
             System.out.println("\nSucccessfully Added \"" + e.getMealName() +"\" to the list of available meals");
+            meal.addMeal(e);
+            wait(727);
                 break;
         
             case 2:
@@ -302,6 +304,8 @@ public class User
                 break;
         }
 
+        
+
     }
 
     private Ingredient createIngredient() // user creates an ingredient //also used in meals
@@ -309,7 +313,7 @@ public class User
 
         String name = getUserIngName();
         Measurements measurement = getIngMeasurement();
-        int amount = getUserIngAmount();
+        float amount = getUserIngAmount();
 
 
         Ingredient userIng = new Ingredient(name, amount, measurement);
