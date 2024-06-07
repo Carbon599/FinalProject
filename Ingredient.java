@@ -21,11 +21,11 @@ public class Ingredient
 {
     // The parameters for the ingredient
     private String name;
-    private int quantity;
+    private float quantity;
     private Measurements Measurements;
     
     
-    Ingredient(String name, int quantity, Measurements Measurements)
+    Ingredient(String name, float quantity, Measurements Measurements)
     {
         this.name = name;
         this.quantity = quantity;
@@ -39,7 +39,7 @@ public class Ingredient
         return this.name;
     }
 
-    public int getFoodAmount() 
+    public float getFoodAmount() 
     {
         return this.quantity;
     }

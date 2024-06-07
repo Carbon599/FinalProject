@@ -8,6 +8,6 @@ public class ListOfMeals // where all meals are stored
 
     public void addMeal(ArrayList<Meal> newMeal)
     {
-        //Meals.add(newMeal);
+        
     }
 }

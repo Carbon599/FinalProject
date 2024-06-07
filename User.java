@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class User 
 {
@@ -66,7 +67,7 @@ public class User
         }
     }    
 
-
+    // the main functions
     private void sortAlphabetically() // 
     {
         fridge.sortFridgeByName(); // Call the sortFridgeByName method
@@ -126,12 +127,12 @@ public class User
         // user can add x amount of ingredients. something like:   1st pass:"1-add ingredient 2-finish"  2nd pass: "1-add another ingredient 2-finish meal"
 
         wait(400);
-        System.out.println("Kitchen::::: \n 1-Create a Meal\n 2-View Meals Available 3-Remove Meals\n 4-Back");
+        System.out.println("Kitchen::::: \n 1-Create a Meal\n 2-View Meals Available \n3-Remove a Meal\n 4-Back");
         int userInput = getUserInt(1, 2);
 
         switch (userInput) {
             case 1:
-                //createMeal();
+                createMeal();
                 break;
             case 2:
             
@@ -153,7 +154,9 @@ public class User
        // System.out.println("Creating a meal...");
     }
 
-        // returns the number that the user typed in
+
+
+    // The getters for user input and more
     private int getUserInt(int min, int max)
     {
         Scanner scn = new Scanner(System.in);
@@ -198,7 +201,6 @@ public class User
         return userNumber;
     }
 
-
     private Measurements getIngMeasurement() // returns the measurement
     {
         System.out.println("Enter the appropriate measurement for the Ingredient:\n 1-TBSP\n 2-TSP\n 3-OZ\n 4-C\n 5-QT\n 6-GAL\n 7-LB\n 8-ML\n 9-G\n 10-KG\n 11-L\n 12-pc (piece/s)");
@@ -206,33 +208,103 @@ public class User
         return Measurements.values()[input];
     }
     
-    private int getUserIngAmount() // returns int
+    private float getUserIngAmount() // returns int
     {
 
         System.out.println("AMOUNT:");
         Scanner userInput = new Scanner(System.in);
 
-        while (!userInput.hasNextInt())
+        while (!userInput.hasNextFloat())
         {
             System.out.println("Amount must not have a letter.");
             userInput.next();
         }
         
-        return userInput.nextInt();
+        return userInput.nextFloat();
         
 
     }
 
-
-    public String getUserIngName() // returns string
+    private String getUserIngName() // returns string
     {
-        System.out.println("NAME:");
+        System.out.println("Name of Ingredient: ");
         Scanner userInput = new Scanner(System.in);
 
         return userInput.nextLine();
     }
 
-    public Ingredient createIngredient() // user creates an ingredient //also used in meals
+    private String getUserMealName() // returns string
+    {
+        System.out.println("Name of Meal: ");
+        Scanner userInput = new Scanner(System.in);
+
+        return userInput.nextLine();
+    }
+
+    private ArrayList<Ingredient> createListOfIngredients()
+    {   
+        ArrayList<Ingredient> list = new ArrayList<Ingredient>();
+        boolean addMore = true;
+        int counter = 1;
+        System.out.println("Options: \n 1-Add an Ingredient \n2-Back (to menu)\n");
+        int userInt = getUserInt(1,2);
+
+        switch (userInt) {
+            case 1:
+
+            while (addMore)
+            {
+            System.out.println("Ingredient" + (counter)+":");
+            list.add(createIngredientForMeal());
+
+            System.out.println("\nDo you want to add another ingredient?\n 1-Add Another Ingredient 2-Finish Meal");
+            int userIntTwo = getUserInt(1,2);
+
+            switch (userIntTwo) {
+                case 1:
+                    addMore = true;
+                    counter++;
+                    break;
+            
+                case 2:
+                    addMore = false;
+                    break;
+            }
+            }
+                break;
+        
+            case 2:
+
+                break;
+        }
+        return list;
+
+    }
+
+    private void createMeal()
+    {
+        System.out.println("\nOptions: \n 1-Create a Meal \n 2-back");
+        int userInt = getUserInt(1,2);
+
+        switch (userInt) {
+            case 1:
+            String name = getUserMealName(); // couldve added an option go back to here if the user mistyped the name but ran out of time. SO just send the user back to menu Lol
+            ArrayList<Ingredient> listOfIng = createListOfIngredients();
+
+            Meal e = new Meal(name, listOfIng);
+            System.out.println("\nSucccessfully Added \"" + e.getMealName() +"\" to the list of available meals");
+                break;
+        
+            case 2:
+            wait(272);
+            System.out.println("\ngoing back...");
+                wait(727);
+                break;
+        }
+
+    }
+
+    private Ingredient createIngredient() // user creates an ingredient //also used in meals
     {   
 
         String name = getUserIngName();
@@ -242,6 +314,19 @@ public class User
 
         Ingredient userIng = new Ingredient(name, amount, measurement);
         System.out.println("Successfully added " + userIng.getFoodName() +" to the Fridge\n");
+        return userIng;
+    }
+
+    private Ingredient createIngredientForMeal() // user creates an ingredient //also used in meals
+    {   
+
+        String name = getUserIngName();
+        Measurements measurement = getIngMeasurement();
+        float amount = getUserIngAmount();
+
+
+        Ingredient userIng = new Ingredient(name, amount, measurement);
+        System.out.println("Successfully added " + userIng.getFoodName() +" to the Ingredients list\n");
         return userIng;
     }
 
