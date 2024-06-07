@@ -14,8 +14,7 @@ public class User
     "II  2-Sort by quantity\n"+
     "III 3-Manage food in storage \n"+
     "IV  4-create meal \n"+
-    "V   5-Display Stuff in the fridge\n"+
-    "VI  6-Exit the program\n"+
+    "V   5-Exit the program\n"+
     "\n---------------------------\n";
     
     User() 
@@ -68,8 +67,6 @@ public class User
     }    
 
 
-
-
     private void sortAlphabetically() // 
     {
         fridge.sortFridgeByName(); // Call the sortFridgeByName method
@@ -80,6 +77,8 @@ public class User
     private void sortByQuantity() 
     {
         fridge.sortFridgeByQuantity(); // Call the sortFridgeByAmount method
+        wait(750);
+        System.out.println("Fridge sorted by quantity!");
         wait(750);
 
     }
@@ -198,6 +197,8 @@ public class User
         }
         return userNumber;
     }
+
+
     private Measurements getIngMeasurement() // returns the measurement
     {
         System.out.println("Enter the appropriate measurement for the Ingredient:\n 1-TBSP\n 2-TSP\n 3-OZ\n 4-C\n 5-QT\n 6-GAL\n 7-LB\n 8-ML\n 9-G\n 10-KG\n 11-L\n 12-pc (piece/s)");
@@ -223,14 +224,12 @@ public class User
     }
 
 
-    public String getUserIngName()// returns string
+    public String getUserIngName() // returns string
     {
         System.out.println("NAME:");
         Scanner userInput = new Scanner(System.in);
 
         return userInput.nextLine();
-        
-
     }
 
     public Ingredient createIngredient() // user creates an ingredient //also used in meals
@@ -246,7 +245,7 @@ public class User
         return userIng;
     }
 
-    private static void wait(int ms)// thing waits in miliseconds
+    private static void wait(int ms) // thing waits in miliseconds
     {
         try
         {

@@ -49,28 +49,20 @@ public class Ingredient
         return this.Measurements;
     }
 
+
     public void setFoodAmount(int newAmount)
     {
         this.quantity = newAmount;
     }
 
-
-    // User Inputs for creating an ingredient
-    private int getUserIngAmount() // returns int
+    public void setFoodName(String newName)
     {
+        this.name = newName;
+    }
 
-        System.out.println("AMOUNT:");
-        Scanner userInput = new Scanner(System.in);
-
-        while (!userInput.hasNextInt())
-        {
-            System.out.println("Amount must not have a letter.");
-            userInput.next();
-        }
-        
-        return userInput.nextInt();
-        
-
+    public void setFoodMeasurement(Measurements newMeasurement)
+    {
+        this.Measurements = newMeasurement;
     }
 
 
