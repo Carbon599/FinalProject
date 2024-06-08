@@ -257,7 +257,7 @@ public class User
             System.out.println("Ingredient" + (counter)+":");
             list.add(createIngredientForMeal());
 
-            System.out.println("\nDo you want to add another ingredient?\n 1-Add Another Ingredient 2-Finish Meal");
+            System.out.println("\nDo you want to add another ingredient?\n 1-Add Another Ingredient \n2-Finish Meal");
             int userIntTwo = getUserInt(1,2);
 
             switch (userIntTwo) {
@@ -321,7 +321,7 @@ public class User
         return userIng;
     }
 
-    private Ingredient createIngredientForMeal() // user creates an ingredient //also used in meals
+    private Ingredient createIngredientForMeal( ) // user creates an ingredient //also used in meals
     {   
 
         String name = getUserIngName();
@@ -330,7 +330,7 @@ public class User
 
 
         Ingredient userIng = new Ingredient(name, amount, measurement);
-        System.out.println("Successfully added " + userIng.getFoodName() +" to the Ingredients list\n");
+        System.out.println("Successfully added " + userIng.getFoodName() +" to the Ingredients list for the meal \n");
         return userIng;
     }
 
