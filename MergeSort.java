@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-
+// the only recursion in the whole program......
 public class MergeSort
 {
   public static ArrayList<Ingredient> mergeSort(ArrayList<Ingredient> ar)

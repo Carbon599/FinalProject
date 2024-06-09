@@ -42,40 +42,32 @@ public class Fridge
             }
         }
     }   
+    
     public void removeIngredient(int place) // removes the ingredient at "place"
     {   
         fridge.remove(place);
     }
-    //"edit method" (literally just replaces the thing LOL)
-    public void newIngredientVer(int ingredientCoordinate,Ingredient ingredientReplacement)
-    {
-    }
-
 
     // Sort methods
     public void sortFridgeByName() //erm
-    {
-        
-        fridge = MergeSort.mergeSort(fridge);
-    
-
+    {    
+        fridge = MergeSort.mergeSort(fridge); // wow it works 
     }
 
 
-    public void sortFridgeByQuantity()// sorts the items in the fridge by amount (disregards the actual measurement)
+    public void sortFridgeByQuantity() // sorts the items in the fridge by amount (disregards the actual measurement)
     {
-
         for (int i = 0; i < fridge.size()-1; i++)
         {
             if (fridge.get(i).getFoodAmount()>fridge.get(i+1).getFoodAmount())
             {
-                Collections.swap(fridge, i, (i+1));
+                Collections.swap(fridge, i, (i+1)); // pls let this slide :)
             }
         }
 
     }
 
-    // Display methods
+    // Display methods (just changed what it says)
     public void displayContents() //display the items in the fridge
     {
         System.out.println("\nI-----Stuff in the fridge-----I\n");
@@ -99,7 +91,7 @@ public class Fridge
         System.out.println("\nI-----------------------------I\n");
     }
     
-    public void displayContentsForRemoval() //display the items in the fridge for editing
+    public void displayContentsForRemoval() //display the items in the fridge for removal
     {
         System.out.println("\nI-----Select an Ingredient to Remove-----I\n");
         int i = 1;

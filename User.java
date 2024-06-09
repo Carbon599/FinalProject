@@ -18,7 +18,7 @@ public class User
     "V   5-Exit the program\n"+
     "\n---------------------------\n";
     
-    User() 
+    User() // is used to add some pre existing ingredients and meals
     {
         fridge = new Fridge(); // Initialize the fridge and add some stuff in it
         fridge.addIngredient(new Ingredient("egg", 3,Measurements.g));
@@ -74,6 +74,8 @@ public class User
     {
         fridge.sortFridgeByName(); // Call the sortFridgeByName method
         wait(750);
+        System.out.println("Fridge sorted lexicographically (alphabetically)!");
+        wait(750);
 
     }
 
@@ -101,15 +103,14 @@ public class User
         {
             case 1:
                 // Add ingredient
-                
                 fridge.addIngredient(createIngredient());
-                fridge.displayContents();
                 break;
             case 2:
                 // Remove ingredient
                 removeIngredient();
                 break;
-            case 3: // lock in... Edits the Ingredient that the user specified
+            case 3: 
+                // lock in... Edits the Ingredient that the user specified
                 editIngredient();
                 break;
         }
@@ -153,7 +154,8 @@ public class User
 
 
 
-    // The getters for user input and more
+    // The getter for user input and more
+    // this one is the "core" of "selection user inputs"
     private int getUserInt(int min, int max)
     {
         Scanner scn = new Scanner(System.in);
