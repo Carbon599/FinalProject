@@ -32,7 +32,7 @@ public class Fridge
     public void sortFridgeByName() //erm
     {
         
-        MergeSort.mergeSort(fridge);
+        fridge = MergeSort.mergeSort(fridge);
     
 
     }

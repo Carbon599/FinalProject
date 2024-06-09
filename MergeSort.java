@@ -15,10 +15,11 @@ public class MergeSort
       if (i % 2 != 0) left.add(ar.get(i));
       else right.add(ar.get(i));
     }
-    
+
     left = mergeSort(left);
     right = mergeSort(right);
-    
+
+
     return merge(left, right);
   }
   
@@ -28,8 +29,9 @@ public class MergeSort
     
     while (!left.isEmpty() && !right.isEmpty())
     {
-      if (left.get(0).getFoodName().compareTo(right.get(0).getFoodName()) >= right.get(0).getFoodName().compareTo(left.get(0).getFoodName()))
+      if (left.get(0).getFoodName().compareToIgnoreCase(right.get(0).getFoodName()) < right.get(0).getFoodName().compareToIgnoreCase(left.get(0).getFoodName()))
       {
+
         ret.add(left.get(0));
         left.remove(0);
       }
@@ -51,7 +53,6 @@ public class MergeSort
       ret.add(right.get(0));
       right.remove(0);
     }
-    
     return ret;
   }
 }
