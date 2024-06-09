@@ -9,7 +9,6 @@ public class Fridge
     private ArrayList<Ingredient> fridge = new ArrayList<Ingredient>();
 
     //getters 
-
     public int getFridgeSize()    //get the size of the ing list
     {
         return fridge.size();
@@ -19,6 +18,12 @@ public class Fridge
     {
         return fridge.get(where).getFoodName();
     }
+
+    public Ingredient getIngredient(int where) // grabs the ingredient from the list
+    {
+        return fridge.get(where);
+    }
+
     // Add or remove methods
     public void addIngredient(Ingredient ingr) 
     {
@@ -27,7 +32,6 @@ public class Fridge
 
     public void removeIngredient(String foodName) // removes whatever the ingredient the user typed in
     {   
-        
         System.out.println(foodName + " removed from the pantry.");
         for (int i = 0; i < fridge.size(); i++) 
         {
@@ -37,7 +41,16 @@ public class Fridge
                 break;
             }
         }
+    }   
+    public void removeIngredient(int place) // removes whatever the ingredient the user typed in
+    {   
+        fridge.remove(place);
     }
+    //"edit method" (literally just replaces the thing LOL)
+    public void newIngredientVer(int ingredientCoordinate,Ingredient ingredientReplacement)
+    {
+    }
+
 
     // Sort methods
     public void sortFridgeByName() //erm
@@ -62,7 +75,7 @@ public class Fridge
 
     }
 
-    // Display method
+    // Display methods
     public void displayContents() //display the items in the fridge
     {
         System.out.println("\nI-----Stuff in the fridge-----I\n");
@@ -74,4 +87,27 @@ public class Fridge
         System.out.println("\nI-----------------------------I\n");
     }
 
+    public void displayContentsForEdit() //display the items in the fridge for editing
+    {
+        System.out.println("\nI-----Select an Ingredient to Edit-----I\n");
+        int i = 1;
+        for (Ingredient ingredient : fridge) 
+        {
+            System.out.println(i+") >> " + ingredient.getFoodName() + ", " + ingredient.getFoodAmount() + ingredient.getFoodMeasurement());
+            i++;
+        }
+        System.out.println("\nI-----------------------------I\n");
+    }
+    
+    public void displayContentsForRemoval() //display the items in the fridge for editing
+    {
+        System.out.println("\nI-----Select an Ingredient to Remove-----I\n");
+        int i = 1;
+        for (Ingredient ingredient : fridge) 
+        {
+            System.out.println(i+") >> " + ingredient.getFoodName() + ", " + ingredient.getFoodAmount() + ingredient.getFoodMeasurement());
+            i++;
+        }
+        System.out.println("\nI-----------------------------I\n");
+    }
 }

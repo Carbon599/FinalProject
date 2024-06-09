@@ -50,7 +50,7 @@ public class Ingredient
     }
 
 
-    public void setFoodAmount(int newAmount)
+    public void setFoodAmount(float newAmount)
     {
         this.quantity = newAmount;
     }

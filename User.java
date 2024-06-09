@@ -47,7 +47,7 @@ public class User
 
                 break;
 
-                case 3: //add or remove meals
+                case 3: //add or remove meals 
                     manageFood();
 
                 break;
@@ -60,6 +60,8 @@ public class User
                 break;
 
                 case 5:
+                System.out.println("See you next time :D");
+                wait(727);
                 runProgram = false;
                 //exit
                 break;
@@ -90,10 +92,9 @@ public class User
          manageFood() gives the user the option to add or remove ingredients from the "fridge"
          
          */
-        Ingredient newIngredient = new Ingredient(null, 0, null); //idk but it works
-        Scanner scanner = new Scanner(System.in);
+
         
-        System.out.println("Select operation: \n 1-Add ingredient \n 2-Remove ingredient \n 3-Back");
+        System.out.println("Select operation: \n 1-Add ingredient \n 2-Remove ingredient \n3-Edit Ingredient\n 4-Back");
         int operation = getUserInt(1, 3);
 
         switch (operation) // will maybe add a feature where you can change the amount of the specified ingredient
@@ -106,15 +107,10 @@ public class User
                 break;
             case 2:
                 // Remove ingredient
-                System.out.println("Enter the name of the ingredient to remove:");
-                String foodName = scanner.nextLine();
-                wait(450);
-                fridge.removeIngredient(foodName);
-                System.out.println("Ingredient removed successfully.");
-                wait(750);
+                removeIngredient();
                 break;
-            case 3:
-
+            case 3: // lock in... Edits the Ingredient that the user specified
+                editIngredient();
                 break;
         }
     }
@@ -336,6 +332,28 @@ public class User
         return userIng;
     }
 
+    private void removeIngredient()
+    {
+        fridge.displayContentsForRemoval();
+        int itemToRemove = getUserInt(0, fridge.getFridgeSize()-1);
+        wait(450);
+        fridge.removeIngredient(itemToRemove);
+        System.out.println("Ingredient removed successfully.");
+        wait(750);
+    }
+
+    private void editIngredient()
+    {
+        fridge.displayContentsForEdit();
+        int itemToEdit = getUserInt(0, fridge.getFridgeSize()-1);
+        Ingredient ingredientToEdit = fridge.getIngredient(itemToEdit);
+        ingredientToEdit.setFoodName(getUserIngName());
+        ingredientToEdit.setFoodMeasurement(getIngMeasurement());
+        ingredientToEdit.setFoodAmount(getUserIngAmount());
+        
+        System.out.println();
+    }
+
     private Ingredient createIngredientForMeal() // user creates an ingredient //also used in meals
     {   
 
@@ -348,6 +366,8 @@ public class User
         System.out.println("Successfully added " + userIng.getFoodName() +" to the Ingredients list for the meal \n");
         return userIng;
     }
+
+
 
     // fancy stuff
 
