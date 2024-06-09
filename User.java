@@ -134,7 +134,7 @@ public class User
 
         wait(400);
         System.out.println("Kitchen:::: \n 1-Create a Recipe \n 2-View Recipes Available \n3-Remove a Recipe \n4-Create a MEAL\n 4-Back");
-        int userInput = getUserInt(1, 2);
+        int userInput = getUserInt(1, 4);
 
         switch (userInput) {
             case 1:
@@ -149,7 +149,10 @@ public class User
                 break;
 
             case 4:
+                System.out.println("WIP");
+                break;
             
+            case 5:
                 break;
         
     
@@ -282,7 +285,7 @@ public class User
 
     }
 
-    private String editUserIngName() // returns string
+    private String editUserIngName(String oldIngName) // returns string
     {
         System.out.println(" New Name of Ingredient: ");
         Scanner userInput = new Scanner(System.in);
@@ -291,14 +294,14 @@ public class User
         {
             ingredientName = userInput.nextLine(); // consume token
 
-            if (scanIngNames(ingredientName)) 
+            if (scanIngNamesEdit(ingredientName, oldIngName)) 
             {
                 System.out.println("Error: There is already an ingredient with the same name.");
                 System.out.println("New Name of Ingredient: ");
             }
         } 
 
-        while (scanIngNames(ingredientName)); // loop if so
+        while (scanIngNamesEdit(ingredientName, oldIngName)); // loop if so
         
         return ingredientName;
         
@@ -435,7 +438,7 @@ public class User
         int itemToEdit = getUserInt(1, fridge.getFridgeSize()); // get position of the ingredient in the list that the user wants to edit
         Ingredient ingredientToEdit = fridge.getIngredient(itemToEdit-1); // GET THAT INGREDIENT!!!
         wait(450);                                                 // I love waiting
-        ingredientToEdit.setFoodName(editUserIngName());            // Sets name
+        ingredientToEdit.setFoodName(editUserIngName(ingredientToEdit.getFoodName()));            // Sets name
         ingredientToEdit.setFoodMeasurement(editIngMeasurement());  // Sets Measurement
         ingredientToEdit.setFoodAmount(editUserIngAmount());        // Sets Amount
         System.out.println("Ingredient edited successfully.");   // Done :D
@@ -445,7 +448,7 @@ public class User
 
 
     // fancy stuff
-
+    //the list scanners
     private boolean scanIngNames(String tryIngredient) // return true if there is a ingredient with the same name
     {
         boolean e = false;
@@ -455,6 +458,28 @@ public class User
             {
                 e =true;
             }     
+        }
+        return e;
+   
+    }
+
+    private boolean scanIngNamesEdit(String tryIngredient1, String oldIngName) // return true if there is a ingredient with the same name 
+    {                                                                          // BUT NOT THE SAME AS THE "oldIngName"
+        boolean e = false;                                                     // There's a difference guys!!!!
+        for (int i = 0; i <fridge.getFridgeSize(); i++)
+        {
+            if (fridge.getIngName(i).equalsIgnoreCase(tryIngredient1))
+            {
+                if (tryIngredient1.equalsIgnoreCase(oldIngName))
+                {
+                    break;
+
+                }
+                else;
+                {
+                e = true;
+                }
+            }    
         }
         return e;
    
