@@ -136,7 +136,7 @@ public class User
         // user can add x amount of ingredients. something like:   1st pass:"1-add ingredient 2-finish"  2nd pass: "1-add another ingredient 2-finish meal"
 
         wait(400);
-        System.out.println("Kitchen::::: \n 1-Create a Meal \n 2-View Meals Available \n3-Remove a Meal\n 4-Back");
+        System.out.println("Kitchen:::: \n 1-Create a Recipe \n 2-View Recipes Available \n3-Remove a Recipe \n4-Create a MEAL\n 4-Back");
         int userInput = getUserInt(1, 2);
 
         switch (userInput) {
