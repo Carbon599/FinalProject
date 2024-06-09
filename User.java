@@ -9,7 +9,7 @@ public class User
     ListOfRecipes listMeals = new ListOfRecipes();
 
     private String longTextWall = "---------------------------\n"+
-    "Select a number between 1-4 \n"+
+    "Select a number between 1-5 \n"+
     "---------------------------\n"+
     "I   1-Sort alphabetically \n"+
     "II  2-Sort by quantity\n"+
@@ -105,7 +105,7 @@ public class User
 
         
         System.out.println("Select operation: \n 1-Add ingredient \n 2-Remove ingredient \n3-Edit Ingredient\n 4-Back");
-        int operation = getUserInt(1, 3);
+        int operation = getUserInt(1, 4);
 
         switch (operation) // will maybe add a feature where you can change the amount of the specified ingredient
         {
@@ -121,6 +121,9 @@ public class User
                 // lock in... Edits the Ingredient that the user specified
                 editIngredient();
                 break;
+            case 4:
+                break;
+
         }
     }
 
@@ -133,7 +136,7 @@ public class User
         // user can add x amount of ingredients. something like:   1st pass:"1-add ingredient 2-finish"  2nd pass: "1-add another ingredient 2-finish meal"
 
         wait(400);
-        System.out.println("Kitchen:::: \n 1-Create a Recipe \n 2-View Recipes Available \n3-Remove a Recipe \n4-Create a MEAL\n 4-Back");
+        System.out.println("Kitchen:::: \n 1-Create a Recipe \n 2-View Recipes Available \n3-Remove a Recipe \n4-Create a MEAL\n 5-Back");
         int userInput = getUserInt(1, 4);
 
         switch (userInput) {
