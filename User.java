@@ -100,6 +100,7 @@ public class User
         {
             case 1:
                 // Add ingredient
+                
                 fridge.addIngredient(createIngredient());
                 fridge.displayContents();
                 break;
@@ -229,8 +230,22 @@ public class User
     {
         System.out.println("Name of Ingredient: ");
         Scanner userInput = new Scanner(System.in);
+        String ingredientName;
+        do 
+        {
+            ingredientName = userInput.nextLine(); // consume token
 
-        return userInput.nextLine();
+            if (scanIngNames(ingredientName)) 
+            {
+                System.out.println("Error: There is already an ingredient with the same name.");
+                System.out.println("Name of Ingredient: ");
+            }
+        } 
+
+        while (scanIngNames(ingredientName)); // loop if so
+        
+        return ingredientName;
+        
     }
 
     private String getUserMealName() // returns string
@@ -241,7 +256,7 @@ public class User
         return userInput.nextLine();
     }
 
-    private ArrayList<Ingredient> createListOfIngredients()
+    private ArrayList<Ingredient> createListOfIngredients() // 
     {   
         ArrayList<Ingredient> list = new ArrayList<Ingredient>();
         boolean addMore = true;
@@ -321,7 +336,7 @@ public class User
         return userIng;
     }
 
-    private Ingredient createIngredientForMeal( ) // user creates an ingredient //also used in meals
+    private Ingredient createIngredientForMeal() // user creates an ingredient //also used in meals
     {   
 
         String name = getUserIngName();
@@ -332,6 +347,22 @@ public class User
         Ingredient userIng = new Ingredient(name, amount, measurement);
         System.out.println("Successfully added " + userIng.getFoodName() +" to the Ingredients list for the meal \n");
         return userIng;
+    }
+
+    // fancy stuff
+
+    private boolean scanIngNames(String tryIngredient) // return true if there is a ingredient with the same name
+    {
+        boolean e = false;
+        for (int i = 0; i <fridge.getFridgeSize(); i++)
+        {
+            if (fridge.getIngName(i).equalsIgnoreCase(tryIngredient))
+            {
+                e =true;
+            }     
+        }
+        return e;
+   
     }
 
     private static void wait(int ms) // thing waits in miliseconds

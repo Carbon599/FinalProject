@@ -8,6 +8,17 @@ public class Fridge
     // Create a list that contains the ingredients (the "storage")
     private ArrayList<Ingredient> fridge = new ArrayList<Ingredient>();
 
+    //getters 
+
+    public int getFridgeSize()    //get the size of the ing list
+    {
+        return fridge.size();
+    }
+
+    public String getIngName(int where) //gets the ing name at "where"
+    {
+        return fridge.get(where).getFoodName();
+    }
     // Add or remove methods
     public void addIngredient(Ingredient ingr) 
     {
