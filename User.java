@@ -6,7 +6,7 @@ public class User
     //initialize some things
     boolean runProgram = true;
     Fridge fridge = new Fridge();
-    ListOfMeals meal = new ListOfMeals();
+    ListOfMeals listMeals = new ListOfMeals();
 
     private String longTextWall = "---------------------------\n"+
     "Select a number between 1-4 \n"+
@@ -18,13 +18,24 @@ public class User
     "V   5-Exit the program\n"+
     "\n---------------------------\n";
     
-    User() // is used to add some pre existing ingredients and meals
+    User() // is used to add some pre existing ingredients and meals (idk how else to)
     {
-        fridge = new Fridge(); // Initialize the fridge and add some stuff in it
+        // added some stuff in the fridge
         fridge.addIngredient(new Ingredient("egg", 3,Measurements.g));
         fridge.addIngredient(new Ingredient("chicken", 5,Measurements.kg));
         fridge.addIngredient(new Ingredient("milk", 4,Measurements.gal));
         fridge.addIngredient(new Ingredient("kiwi", 7,Measurements.pc));
+        fridge.addIngredient(new Ingredient("fries", 750,Measurements.g));
+        fridge.addIngredient(new Ingredient("gravy", 7,Measurements.pc));
+        fridge.addIngredient(new Ingredient("salt", 20,Measurements.g));
+
+        // add  apre-existing recipe for a meal
+        ArrayList<Ingredient>  r = new ArrayList<Ingredient>();
+        r.add(new Ingredient("fries", 750,Measurements.g));
+        r.add(new Ingredient("gravy", 7,Measurements.pc));
+        r.add(new Ingredient("salt", 20,Measurements.g));
+
+        listMeals.addMeal(new Meal("Poutine", r));
 
     }
 
@@ -130,10 +141,10 @@ public class User
 
         switch (userInput) {
             case 1:
-                createMeal();
+                createRecipe();
                 break;
             case 2:
-                
+                listMeals.displayMeals();
                 break;
 
             case 3:
@@ -307,8 +318,6 @@ public class User
     }
 
 
-
-
     private ArrayList<Ingredient> createListOfIngredients() // 
     {   
         ArrayList<Ingredient> list = new ArrayList<Ingredient>();
@@ -323,7 +332,7 @@ public class User
             while (addMore)
             {
             System.out.println("Ingredient" + (counter)+":");
-            list.add(createIngredientForMeal());
+            list.add(createIngredientForRecipe());
 
             System.out.println("\nDo you want to add another ingredient?\n 1-Add Another Ingredient \n2-Finish Meal");
             int userIntTwo = getUserInt(1,2);
@@ -349,7 +358,7 @@ public class User
 
     }
 
-    private void createMeal()
+    private void createRecipe()
     {
         System.out.println("\nOptions: \n 1-Create a Meal \n 2-back");
         int userInt = getUserInt(1,2);
@@ -361,7 +370,7 @@ public class User
 
             Meal e = new Meal(name, listOfIng);
             System.out.println("\nSucccessfully Added \"" + e.getMealName() +"\" to the list of available meals");
-            meal.addMeal(e);
+            listMeals.addMeal(e);
             wait(727);
                 break;
         
@@ -410,7 +419,7 @@ public class User
         System.out.println("Ingredient edited successfully.");   // Done :D
     }
 
-    private Ingredient createIngredientForMeal() // user creates an ingredient //also used in meals
+    private Ingredient createIngredientForRecipe() // user creates an ingredient //also used in meals
     {   
 
         String name = getUserIngName();
