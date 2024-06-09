@@ -458,25 +458,149 @@ public class User
         int posMealToMake = getUserInt(1, listMeals.getRecipeListSize()); // get which meal to make
         Meal mealToMake = listMeals.getMeal(posMealToMake-1);                   // a lot of getters
         ArrayList<Ingredient> recipeListOfMeaL = mealToMake.getIngredientsList(); 
-
         
+        boolean continueMethod = compareListsName(recipeListOfMeaL, fridge.getFridge()); //true or false 
 
+        switch (switchType(continueMethod)) // switches true or false to 1 or 0, so it either continues with creating the meal or no 
+        {
+            case 1:
+                boolean continueMethod2 = compareListAmount(recipeListOfMeaL, fridge.getFridge()); // true or false
+                wait(1000);
+                switch (switchType(continueMethod2)) // same thing 
+                {
+                    case 1:
+                        System.out.println("Fridge has enough ingredients to create the meal.\n"+
+                                           "create the meal? \n1-yes\n2-no");
+                        int userChoice =getUserInt(1, 2);
+
+                        switch (userChoice) // wow triple switches wow!
+                        {
+                            case 1:
+                                cook(recipeListOfMeaL, fridge.getFridge()); // thing is named cook but really it just subtracts quantites lol
+
+                                break;
+                            case 2:
+
+                                break;
+                        }
+                        
+                        break;
+                
+                    case 0:
+                        System.out.println("Missing ingredient quantity, moving back to menu...");
+                        wait(727);
+                        break;
+                }
+                break;
+
+            case 0:
+                System.out.println("Missing Ingredients, moving back to menu...");
+                wait(727);
+                break;
+        }
 
 
 
     }
 
-    private void compareListsName(ArrayList<Ingredient> theRecipeInQuestion, ArrayList<Ingredient> fridge) // compares recipe vs what u have in fridge
+    private boolean compareListsName(ArrayList<Ingredient> theRecipeInQuestion, ArrayList<Ingredient> fridge) // compares recipe vs what u have in fridge
     {
+        boolean hasIngredientRequired = true;
 
+        for (Ingredient name : theRecipeInQuestion)
+        {
+            boolean isInFridge = false;
+            for (Ingredient nameF: fridge)
+            {
+                if (name.getFoodName().equalsIgnoreCase(nameF.getFoodName()))
+                {
+                    isInFridge = true;
+                }
+
+            }
+            if(isInFridge)
+            {
+                System.out.println(">>"+name.getFoodName() + "<<  status : available");
+                wait(200);
+            }
+            else
+            {   
+                hasIngredientRequired = false;
+                System.out.println(">>"+name.getFoodName() + "<<  status:  unavailable");
+                wait(200);
+            }
+
+        }
+        return hasIngredientRequired;
 
     }
 
-    private void compareListAmount(){}
+    private boolean compareListAmount(ArrayList<Ingredient> theRecipeInQuestion, ArrayList<Ingredient> fridge)
+    {   
+        boolean continuePro = true;
+        Ingredient fridgeIng;
+
+        for (Ingredient name : theRecipeInQuestion)
+        {   
+            fridgeIng = null;
+            boolean hasEnough = false;
+            for (Ingredient nameF: fridge)      // name is the "required amount", nameF is amount u have in fridge
+            {
+                if (name.getFoodAmount() <= nameF.getFoodAmount())
+                {
+                    hasEnough = true;
+                }
+                fridgeIng = nameF;
+            }
+            if(hasEnough)
+            {
+                System.out.println("Amount Required for "+name.getFoodName()+": "+name.getFoodAmount()+ "Amount in Fridge:"+name.getFoodName()+": "+name.getFoodAmount()+" status : has enough");
+                wait(200);
+            }
+            else
+            {   
+                continuePro = false;
+                System.out.println("Amount Required for "+name.getFoodName()+": "+name.getFoodAmount()+ "Amount in Fridge:"+fridgeIng.getFoodName()+": "+fridgeIng.getFoodAmount()+" status : NOT enough");
+                System.out.println("Amount Missing: " + (name.getFoodAmount()-fridgeIng.getFoodAmount()));
+                wait(200);
+            }
+        }
+        return continuePro;
+    }
+
+    private boolean cook(ArrayList<Ingredient> theRecipeInQuestion, ArrayList<Ingredient> fridge) // were cooked
+    {
+        boolean hasIngredientRequired = true;
+
+        for (Ingredient name : theRecipeInQuestion)
+        {
+            boolean isInFridge = false;
+            for (Ingredient nameF: fridge)
+            {
+                if (name.getFoodName().equalsIgnoreCase(nameF.getFoodName()))
+                {
+                    isInFridge = true;
+                }
+
+            }
+            if(isInFridge)
+            {
+                System.out.println(">>"+name.getFoodName() + "<<  status : available");
+                wait(200);
+            }
+            else
+            {   
+                hasIngredientRequired = false;
+                System.out.println(">>"+name.getFoodName() + "<<  status:  unavailable");
+                wait(200);
+            }
+
+        }
+        return hasIngredientRequired;
+
+    }
 
 
-
-    // fancy stuff
     //the list scanners
     private boolean scanIngNames(String tryIngredient) // return true if there is a ingredient with the same name
     {
@@ -514,6 +638,7 @@ public class User
    
     }
 
+    // ------------THE fancy stuff-----------------
     private static void wait(int ms) // thing waits in miliseconds
     {
         try
@@ -525,4 +650,17 @@ public class User
             Thread.currentThread().interrupt();
         }
     }
+
+    private int switchType(boolean type) // returns 1 if true, else return 0
+    {
+        if (type ==true)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
 }
