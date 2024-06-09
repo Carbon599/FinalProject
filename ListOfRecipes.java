@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
-
-public class ListOfMeals // where all meals are stored
+public class ListOfRecipes // where all recipes are stored
 {
 
     private ArrayList<Meal> Meals = new ArrayList<Meal>();

@@ -6,7 +6,7 @@ public class User
     //initialize some things
     boolean runProgram = true;
     Fridge fridge = new Fridge();
-    ListOfMeals listMeals = new ListOfMeals();
+    ListOfRecipes listMeals = new ListOfRecipes();
 
     private String longTextWall = "---------------------------\n"+
     "Select a number between 1-4 \n"+
@@ -14,7 +14,7 @@ public class User
     "I   1-Sort alphabetically \n"+
     "II  2-Sort by quantity\n"+
     "III 3-Manage food in storage \n"+
-    "IV  4-create meal \n"+
+    "IV  4-Manage Meals \n"+
     "V   5-Exit the program\n"+
     "\n---------------------------\n";
     
@@ -55,7 +55,6 @@ public class User
 
                 case 2: //sort quantity
                     sortByQuantity();
-
                 break;
 
                 case 3: //add or remove meals 
@@ -64,10 +63,8 @@ public class User
                 break;
 
                 case 4:
-                    manageMeals();
-                // has a set of premade meals
-                // user has the ability to create meals   
-                
+                    manageMeals();  // has a set of premade meals
+                                    // user has the ability to create meals   
                 break;
 
                 case 5:
@@ -165,7 +162,7 @@ public class User
 
 
 
-    // The getter for user input and more
+    // The getter for user inputs and more
     // this one is the "core" of "selection user inputs"
     private int getUserInt(int min, int max)
     {
@@ -212,8 +209,7 @@ public class User
     }
     
 
-    //------------------the get user inputs for CONFIGURING(creating) an ingredient's attributes--------------------------------
-    
+    //------------------the "get user inputs" for CONFIGURING(creating) an ingredient's attributes--------------------------------
 
     private Measurements getIngMeasurement() // returns the measurement
     {
@@ -307,8 +303,9 @@ public class User
         return ingredientName;
         
     }
-    
-    // ------------------------------CREATE-REMOVE-METHODS-for--RECIPE -----------------------------------------------------
+
+
+    // ------------------------------CREATE-REMOVE-METHODS-for--RECIPE-----------------------------------------------------
 
     private String getUserMealName() // returns string
     {
@@ -409,7 +406,7 @@ public class User
 
 
 
-    // -------------------CREATE, REMOVE, and EDIT for INGREDIENT METHODS-------------------
+    // -------------------CREATE-REMOVE-and-EDIT-METHODS-for--INGREDIENT-------------------
     private Ingredient createIngredient() // user creates an ingredient 
     {   
 

@@ -42,7 +42,7 @@ public class Fridge
             }
         }
     }   
-    
+
     public void removeIngredient(int place) // removes the ingredient at "place"
     {   
         fridge.remove(place);
@@ -67,7 +67,7 @@ public class Fridge
 
     }
 
-    // Display methods (just changed what it says)
+    // Display methods (just changed what each one says) (oppurtunity for override but idk how with this structure)
     public void displayContents() //display the items in the fridge
     {
         System.out.println("\nI-----Stuff in the fridge-----I\n");

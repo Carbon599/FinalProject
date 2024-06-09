@@ -1,4 +1,4 @@
-import java.util.Scanner;
+
 // measurments the user gets to choose from
 enum Measurements 
 {
