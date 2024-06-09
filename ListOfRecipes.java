@@ -11,6 +11,11 @@ public class ListOfRecipes // where all recipes are stored
         return Meals.size();
     }
 
+    public Meal getMeal(int place) // gets meal at specified location in the list
+    {
+        return Meals.get(place);
+    }
+
     //add or remove methods
     public void addRecipe(Meal newMeal)
     {

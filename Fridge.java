@@ -9,19 +9,29 @@ public class Fridge
     private ArrayList<Ingredient> fridge = new ArrayList<Ingredient>();
 
     //getters 
+    public ArrayList<Ingredient> getFridge() // gets the full list of ingredients with their attributes 
+    {
+        return fridge;
+    }
+
+    public Ingredient getIngredient(int where) // grabs the ingredient from the list (the literal ingredient with all attributes)
+    {
+        return fridge.get(where);
+    }
+    
     public int getFridgeSize()    //get the size of the ing list
     {
         return fridge.size();
     }
 
-    public String getIngName(int where) //gets the ing name at "where"
+    public String getIngName(int where) //gets the ing name at "where" (just the name)
     {
         return fridge.get(where).getFoodName();
     }
 
-    public Ingredient getIngredient(int where) // grabs the ingredient from the list
+    public float getIngAmount(int where) //gets the ing amount at "where" (just the amount)(float)
     {
-        return fridge.get(where);
+        return fridge.get(where).getFoodAmount();
     }
 
     // Add or remove methods

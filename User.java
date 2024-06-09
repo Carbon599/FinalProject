@@ -136,7 +136,7 @@ public class User
         // user can add x amount of ingredients. something like:   1st pass:"1-add ingredient 2-finish"  2nd pass: "1-add another ingredient 2-finish meal"
 
         wait(400);
-        System.out.println("Kitchen:::: \n 1-Create a Recipe \n 2-View Recipes Available \n3-Remove a Recipe \n4-Create a MEAL\n 5-Back");
+        System.out.println("Kitchen:::: \n 1-Create a Recipe \n 2-View Recipes Available \n3-Remove a Recipe \n4-Make a MEAL\n 5-Back");
         int userInput = getUserInt(1, 4);
 
         switch (userInput) {
@@ -152,7 +152,7 @@ public class User
                 break;
 
             case 4:
-                System.out.println("WIP");
+                makeMeal();                
                 break;
             
             case 5:
@@ -412,7 +412,7 @@ public class User
 
 
 
-    // -------------------CREATE-REMOVE-and-EDIT-METHODS-for--INGREDIENT-------------------
+    // -------------------CREATE-REMOVE-and-EDIT-METHODS-for--INGREDIENT---------------------------------------------
     private Ingredient createIngredient() // user creates an ingredient 
     {   
 
@@ -447,6 +447,32 @@ public class User
         System.out.println("Ingredient edited successfully.");   // Done :D
         wait(750);
     }
+
+
+    // ------------------------------MAKE A MEAL METHODS----------------------------------------------------------------------------
+    private void makeMeal() // end result: removes ingredient from the inventory(quantity).
+    {                       // if quantity of the said ingredient is 0, remove that ingredient from the list (fridge)
+                            // if not enough ingredients, tell which ingredients are missing and how much(required - currently have)
+        System.out.println("Select a meal to make: ");            
+        listMeals.displayMeals(); // display the recipes
+        int posMealToMake = getUserInt(1, listMeals.getRecipeListSize()); // get which meal to make
+        Meal mealToMake = listMeals.getMeal(posMealToMake-1);                   // a lot of getters
+        ArrayList<Ingredient> recipeListOfMeaL = mealToMake.getIngredientsList(); 
+
+        
+
+
+
+
+    }
+
+    private void compareListsName(ArrayList<Ingredient> theRecipeInQuestion, ArrayList<Ingredient> fridge) // compares recipe vs what u have in fridge
+    {
+
+
+    }
+
+    private void compareListAmount(){}
 
 
 
