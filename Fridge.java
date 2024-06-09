@@ -57,6 +57,9 @@ public class Fridge
 
     public void sortFridgeByQuantity() // sorts the items in the fridge by amount (disregards the actual measurement)
     {
+        for(int k = 0; k < fridge.size()-1; k++)
+        {
+
         for (int i = 0; i < fridge.size()-1; i++)
         {
             if (fridge.get(i).getFoodAmount()>fridge.get(i+1).getFoodAmount())
@@ -64,6 +67,7 @@ public class Fridge
                 Collections.swap(fridge, i, (i+1)); // pls let this slide :)
             }
         }
+    }
 
     }
 
