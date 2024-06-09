@@ -197,6 +197,10 @@ public class User
         }
         return userNumber;
     }
+    
+
+    //------------------the get user inputs for configuring an ingredient's attributes--------------------------------
+    
 
     private Measurements getIngMeasurement() // returns the measurement
     {
@@ -204,11 +208,11 @@ public class User
         int input = getUserInt(1, 12);
         return Measurements.values()[input];
     }
-    
+
     private float getUserIngAmount() // returns float
     {
 
-        System.out.println("AMOUNT:");
+        System.out.println("Amount:");
         Scanner userInput = new Scanner(System.in);
 
         while (!userInput.hasNextFloat())
@@ -244,6 +248,54 @@ public class User
         
     }
 
+    //-------------the get user inputs for editing an ingridient's attributes (pretty much copy and paste but it is what it is) -------------
+    private Measurements editIngMeasurement() // returns the measurement
+    {
+        System.out.println("Enter the appropriate measurement for the Ingredient:\n 1-TBSP\n 2-TSP\n 3-OZ\n 4-C\n 5-QT\n 6-GAL\n 7-LB\n 8-ML\n 9-G\n 10-KG\n 11-L\n 12-pc (piece/s)");
+        int input = getUserInt(1, 12);
+        return Measurements.values()[input];
+    }
+
+    private float editUserIngAmount() // returns float
+    {
+
+        System.out.println("New Amount:");
+        Scanner userInput = new Scanner(System.in);
+
+        while (!userInput.hasNextFloat())
+        {
+            System.out.println("Amount must not have a letter.");
+            userInput.next();
+        }
+        
+        return userInput.nextFloat();
+        
+
+    }
+
+    private String editUserIngName() // returns string
+    {
+        System.out.println(" New Name of Ingredient: ");
+        Scanner userInput = new Scanner(System.in);
+        String ingredientName;
+        do 
+        {
+            ingredientName = userInput.nextLine(); // consume token
+
+            if (scanIngNames(ingredientName)) 
+            {
+                System.out.println("Error: There is already an ingredient with the same name.");
+                System.out.println("New Name of Ingredient: ");
+            }
+        } 
+
+        while (scanIngNames(ingredientName)); // loop if so
+        
+        return ingredientName;
+        
+    }
+    // ----------------------------------------------------------------------------------------------------------------
+
     private String getUserMealName() // returns string
     {
         System.out.println("Name of Meal: ");
@@ -251,6 +303,9 @@ public class User
 
         return userInput.nextLine();
     }
+
+
+
 
     private ArrayList<Ingredient> createListOfIngredients() // 
     {   
@@ -318,40 +373,39 @@ public class User
         
 
     }
-
-    private Ingredient createIngredient() // user creates an ingredient //also used in meals
+    // -------------------CREATE, REMOVE, and EDIT INGREDIENT METHODS-------------------
+    private Ingredient createIngredient() // user creates an ingredient 
     {   
 
-        String name = getUserIngName();
-        Measurements measurement = getIngMeasurement();
-        float amount = getUserIngAmount();
+        String name = getUserIngName();                 // get the name (if user inputs a name that is already existing, ask again)
+        Measurements measurement = getIngMeasurement(); // get the measurement
+        float amount = getUserIngAmount();              // get the amount (if not a number base 10, ask again)
 
-
-        Ingredient userIng = new Ingredient(name, amount, measurement);
+        Ingredient userIng = new Ingredient(name, amount, measurement); //create an Ingredient object 
         System.out.println("Successfully added " + userIng.getFoodName() +" to the Fridge\n");
-        return userIng;
+        return userIng; // returns the ingredient to be added to the ingredients list (fridge)
     }
 
     private void removeIngredient()
     {
-        fridge.displayContentsForRemoval();
-        int itemToRemove = getUserInt(0, fridge.getFridgeSize()-1);
-        wait(450);
-        fridge.removeIngredient(itemToRemove);
-        System.out.println("Ingredient removed successfully.");
-        wait(750);
+        fridge.displayContentsForRemoval(); // displays the ingredient list for removal D:
+        int itemToRemove = getUserInt(1, fridge.getFridgeSize()); // get the position of the ingredient to be removed
+        wait(450);                                                 // I love waiting
+        fridge.removeIngredient(itemToRemove-1);                      // remove the ingredient from the fridge!!!!!!!!
+        System.out.println("Ingredient removed successfully.");     // indeed
+        wait(750); 
     }
 
     private void editIngredient()
     {
-        fridge.displayContentsForEdit();
-        int itemToEdit = getUserInt(0, fridge.getFridgeSize()-1);
-        Ingredient ingredientToEdit = fridge.getIngredient(itemToEdit);
-        ingredientToEdit.setFoodName(getUserIngName());
-        ingredientToEdit.setFoodMeasurement(getIngMeasurement());
-        ingredientToEdit.setFoodAmount(getUserIngAmount());
-        
-        System.out.println();
+        fridge.displayContentsForEdit(); // displays the ingredients eligible for edits
+        int itemToEdit = getUserInt(1, fridge.getFridgeSize()); // get position of the ingredient in the list that the user wants to edit
+        Ingredient ingredientToEdit = fridge.getIngredient(itemToEdit-1); // GET THAT INGREDIENT!!!
+        wait(450);                                                 // I love waiting
+        ingredientToEdit.setFoodName(editUserIngName());            // Sets name
+        ingredientToEdit.setFoodMeasurement(editIngMeasurement());  // Sets Measurement
+        ingredientToEdit.setFoodAmount(editUserIngAmount());        // Sets Amount
+        System.out.println("Ingredient edited successfully.");   // Done :D
     }
 
     private Ingredient createIngredientForMeal() // user creates an ingredient //also used in meals

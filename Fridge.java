@@ -30,7 +30,7 @@ public class Fridge
         fridge.add(ingr);
     }
 
-    public void removeIngredient(String foodName) // removes whatever the ingredient the user typed in
+    public void removeIngredient(String foodName) // removes whatever the ingredient the user typed in(not used currently)
     {   
         System.out.println(foodName + " removed from the pantry.");
         for (int i = 0; i < fridge.size(); i++) 
@@ -42,7 +42,7 @@ public class Fridge
             }
         }
     }   
-    public void removeIngredient(int place) // removes whatever the ingredient the user typed in
+    public void removeIngredient(int place) // removes the ingredient at "place"
     {   
         fridge.remove(place);
     }
