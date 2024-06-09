@@ -17,7 +17,7 @@ public class ListOfRecipes // where all recipes are stored
         Meals.add(newMeal);
     }
 
-    public void removeMeal(int place)
+    public void removeMeal(int place) //place, as in place(position) in the list
     {
         Meals.remove(place);
 

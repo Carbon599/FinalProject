@@ -43,7 +43,7 @@ public class Fridge
         }
     }   
 
-    public void removeIngredient(int place) // removes the ingredient at "place"
+    public void removeIngredient(int place) // removes the ingredient at "place", as in position in the list(place)
     {   
         fridge.remove(place);
     }
