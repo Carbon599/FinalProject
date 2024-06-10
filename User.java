@@ -712,6 +712,6 @@ public class User
         {
             return 0;
         }
-    }
+    } 
 
 }
