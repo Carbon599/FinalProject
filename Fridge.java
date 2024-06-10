@@ -13,11 +13,22 @@ public class Fridge
     {
         return fridge;
     }
+    public ArrayList<String> getIngNames() //gets the list of ingredient names in strings (maybe useful somewhere)
+    {
+        ArrayList<String> list = new ArrayList<String>();
+        int i =0;
+        for(Ingredient a: fridge)
+        {
+            fridge.get(i).getFoodName();
+        }
+        return list;
+    }
 
     public Ingredient getIngredient(int where) // grabs the ingredient from the list (the literal ingredient with all attributes)
     {
         return fridge.get(where);
     }
+
     
     public int getFridgeSize()    //get the size of the ing list
     {

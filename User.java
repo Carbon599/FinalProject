@@ -7,6 +7,8 @@ public class User
     boolean runProgram = true;
     Fridge fridge = new Fridge();
     ListOfRecipes listMeals = new ListOfRecipes();
+    Table table = new Table();
+
 
     private String longTextWall = "---------------------------\n"+
     "Select a number between 1-5 \n"+
@@ -136,26 +138,32 @@ public class User
         // user can add x amount of ingredients. something like:   1st pass:"1-add ingredient 2-finish"  2nd pass: "1-add another ingredient 2-finish meal"
 
         wait(400);
-        System.out.println("Kitchen:::: \n 1-Create a Recipe \n 2-View Recipes Available \n3-Remove a Recipe \n4-Make a MEAL\n 5-Back");
-        int userInput = getUserInt(1, 4);
+        System.out.println("Kitchen:::: \n 1-Create a Recipe \n 2-View Recipes Available \n 3-Remove a Recipe \n 4-Make a MEAL\n 5-View Meals you cooked \n 6-Back");
+        int userInput = getUserInt(1, 6);
 
         switch (userInput) {
             case 1:
-                createRecipe();
+                createRecipe(); // create a RECIPE
                 break;
             case 2:
-                listMeals.displayMeals();
+                listMeals.displayMeals(); // view RECIPEs
                 break;
 
             case 3:
-                removeRecipe();
+                removeRecipe(); // remove RECIPE (you dont want to do this for real)
                 break;
 
             case 4:
-                makeMeal();                
+                makeMeal(); //create a MEAL            
                 break;
             
             case 5:
+                viewMealCreated(); //view meal created (chronologically the final thing we added in in this program)
+                break;
+
+            case 6:
+                System.out.println("Returning to menu....\n");
+                wait(727);
                 break;
         
     
@@ -453,7 +461,7 @@ public class User
     private void makeMeal() // end result: removes ingredient from the inventory(quantity).
     {                       // if quantity of the said ingredient is 0, remove that ingredient from the list (fridge)
                             // if not enough ingredients, tell which ingredients are missing and how much(required - currently have)
-        System.out.println("Select a meal to make: ");            
+        System.out.println("Select a meal to make: \n");            
         listMeals.displayMeals(); // display the recipes
         int posMealToMake = getUserInt(1, listMeals.getRecipeListSize()); // get which meal to make
         Meal mealToMake = listMeals.getMeal(posMealToMake-1);                   // a lot of getters
@@ -471,23 +479,23 @@ public class User
                     case 1:
                         System.out.println("Fridge has enough ingredients to create the meal.\n"+
                                            "create the meal? \n1-yes\n2-no");
-                        int userChoice =getUserInt(1, 2);
+                        int userChoice = getUserInt(1, 2);
 
                         switch (userChoice) // wow triple switches wow!
                         {
                             case 1:
-                                cook(recipeListOfMeaL, fridge.getFridge()); // thing is named cook but really it just subtracts quantites lol
+                                cook(recipeListOfMeaL); // thing is named cook but really it just subtracts quantites lol
+                                table.addRecipe(mealToMake);
 
                                 break;
                             case 2:
-
+                                System.out.println("Returning to menu...\n");
                                 break;
                         }
-                        
                         break;
                 
                     case 0:
-                        System.out.println("Missing ingredient quantity, moving back to menu...");
+                        System.out.println("Missing ingredient quantity, moving back to menu...\n");
                         wait(727);
                         break;
                 }
@@ -554,13 +562,13 @@ public class User
             }
             if(hasEnough)
             {
-                System.out.println("Amount Required for "+name.getFoodName()+": "+name.getFoodAmount()+ "Amount in Fridge:"+name.getFoodName()+": "+name.getFoodAmount()+" status : has enough");
+                System.out.println("Amount Required for "+name.getFoodName()+": "+name.getFoodAmount()+ " || Amount in Fridge:"+name.getFoodName()+": "+name.getFoodAmount()+" status : has enough");
                 wait(200);
             }
             else
             {   
                 continuePro = false;
-                System.out.println("Amount Required for "+name.getFoodName()+": "+name.getFoodAmount()+ "Amount in Fridge:"+fridgeIng.getFoodName()+": "+fridgeIng.getFoodAmount()+" status : NOT enough");
+                System.out.println("Amount Required for "+name.getFoodName()+": "+name.getFoodAmount()+ " || Amount in Fridge:"+fridgeIng.getFoodName()+": "+fridgeIng.getFoodAmount()+" status : NOT enough");
                 System.out.println("Amount Missing: " + (name.getFoodAmount()-fridgeIng.getFoodAmount()));
                 wait(200);
             }
@@ -568,38 +576,42 @@ public class User
         return continuePro;
     }
 
-    private boolean cook(ArrayList<Ingredient> theRecipeInQuestion, ArrayList<Ingredient> fridge) // were cooked
+    private void cook(ArrayList<Ingredient> theRecipeInQuestion) // were cooked
     {
-        boolean hasIngredientRequired = true;
-
         for (Ingredient name : theRecipeInQuestion)
         {
-            boolean isInFridge = false;
-            for (Ingredient nameF: fridge)
+            int i = 0;
+            while (i<=fridge.getFridgeSize())
             {
-                if (name.getFoodName().equalsIgnoreCase(nameF.getFoodName()))
-                {
-                    isInFridge = true;
-                }
 
-            }
-            if(isInFridge)
-            {
-                System.out.println(">>"+name.getFoodName() + "<<  status : available");
-                wait(200);
-            }
-            else
-            {   
-                hasIngredientRequired = false;
-                System.out.println(">>"+name.getFoodName() + "<<  status:  unavailable");
-                wait(200);
-            }
+                if (name.getFoodName().equalsIgnoreCase(fridge.getIngName(i))); // finds the ingredient with the same name to perform some subtraction
+                {   
+                    // vv unreadable but basically it subtracts the amount in fridge by the amount required in the recipe
+                    fridge.getIngredient(i).setFoodAmount(fridge.getIngredient(i).getFoodAmount()-name.getFoodAmount()); // unreadable 
+                    System.out.println("Adding " + name.getFoodName() + " to the meal");
+                    wait(450);
 
+                    // this one straight up REMOVES the ingredient if amount is ZERO
+                    if (fridge.getIngredient(i).getFoodAmount() == 0)
+                    {
+                        System.out.println(name.getFoodName()+"stock exhausted. Removing from fridge...");
+                        wait(200);
+                        fridge.removeIngredient(i);
+                        break;
+                    }
+                }   
+                i++;
+                break;                                                        
+            }
         }
-        return hasIngredientRequired;
-
     }
 
+    private void viewMealCreated()
+    {
+        table.displayMeals();
+    }
+
+    //---------------------------VIEW MEALS YOU CREATED------------------(this is an extra add on, why not I guess)------
 
     //the list scanners
     private boolean scanIngNames(String tryIngredient) // return true if there is a ingredient with the same name
