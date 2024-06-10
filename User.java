@@ -30,7 +30,6 @@ public class User
         fridge.addIngredient(new Ingredient("fries", 749,Measurements.g));
         fridge.addIngredient(new Ingredient("gravy", 6,Measurements.pc));
         fridge.addIngredient(new Ingredient("salt", 20,Measurements.g));
-        fridge.addIngredient(new Ingredient("salt", 20,Measurements.g));
 
         // add  apre-existing recipe for a meal
         ArrayList<Ingredient>  r = new ArrayList<Ingredient>();
