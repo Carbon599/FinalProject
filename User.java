@@ -11,14 +11,14 @@ public class User
 
 
     private String longTextWall = "---------------------------\n"+
-    "Select a number between 1-5 \n"+
-    "---------------------------\n"+
-    "I   1-Sort alphabetically \n"+
-    "II  2-Sort by quantity\n"+
-    "III 3-Manage food in storage \n"+
-    "IV  4-Manage Meals \n"+
-    "V   5-Exit the program\n"+
-    "\n---------------------------\n";
+                                    "Select a number between 1-5 \n"+
+                                    "---------------------------\n"+
+                                    "I   1-Sort alphabetically \n"+
+                                    "II  2-Sort by quantity\n"+
+                                    "III 3-Manage food in storage \n"+
+                                    "IV  4-Manage Meals \n"+
+                                    "V   5-Exit the program\n"+
+                                    "\n---------------------------\n";
     
     User() // is used to add some pre existing ingredients and meals (idk how else to)
     {
@@ -136,7 +136,7 @@ public class User
         // Ask the user for the name of the meal
         // asks the user for the ingredients that are required for the meal
         // user can add x amount of ingredients. something like:   1st pass:"1-add ingredient 2-finish"  2nd pass: "1-add another ingredient 2-finish meal"
-
+        // Old pseudocode^
         wait(400);
         System.out.println("\n\nOptions in Kitchen: \n 1-Create a Recipe \n 2-View Recipes Available \n 3-Remove a Recipe \n 4-Make a MEAL\n 5-View Meals you cooked \n 6-Back");
         int userInput = getUserInt(1, 6);
@@ -234,7 +234,7 @@ public class User
         return Measurements.values()[input];
     }
 
-    private float getUserIngAmount() // returns float
+    private float getUserIngAmount() // returns float, yep
     {
 
         System.out.println("Amount:");
@@ -260,7 +260,7 @@ public class User
         {
             ingredientName = userInput.nextLine(); // consume token
 
-            if (scanIngNames(ingredientName)) // *
+            if (scanIngNames(ingredientName)) // If there is an ingredient with the same name, this runs
             {
                 System.out.println("Error: There is already an ingredient with the same name.");
                 System.out.println("Name of Ingredient: ");
@@ -305,9 +305,9 @@ public class User
         String ingredientName;
         do 
         {
-            ingredientName = userInput.nextLine(); // consume token
+            ingredientName = userInput.nextLine(); // for a bit of clarity
 
-            if (scanIngNamesEdit(ingredientName, oldIngName)) 
+            if (scanIngNamesEdit(ingredientName, oldIngName)) // runs if there is an ingredient of the same name BUT except for itself
             {
                 System.out.println("Error: There is already an ingredient with the same name.");
                 System.out.println("New Name of Ingredient: ");
@@ -331,7 +331,7 @@ public class User
         return userInput.nextLine();
     }
 
-    private String getUserIngMealName()
+    private String getUserIngMealName() // returns string (just changed what it says)
     {
         System.out.println("Name of Ingredient: ");
         Scanner userInput = new Scanner(System.in);
@@ -340,7 +340,7 @@ public class User
     }
 
 
-    private ArrayList<Ingredient> createListOfIngredients() // 
+    private ArrayList<Ingredient> createListOfIngredients() // creates a list of ingredients for the recipe that the user makes
     {   
         ArrayList<Ingredient> list = new ArrayList<Ingredient>();
         boolean addMore = true;
@@ -351,28 +351,28 @@ public class User
         switch (userInt) {
             case 1:
 
-            while (addMore)
+            while (addMore) 
             {
-            System.out.println("Ingredient" + (counter)+":");
-            list.add(createIngredientForRecipe());
+            System.out.println("Ingredient " + (counter)+":");
+            list.add(createIngredientForRecipe()); // adds in the ingredient to the list of ingredients
 
             System.out.println("\nDo you want to add another ingredient?\n 1-Add Another Ingredient \n2-Finish Meal");
             int userIntTwo = getUserInt(1,2);
 
             switch (userIntTwo) {
-                case 1:
+                case 1: // choosing this option loops back to case 1(userInt)
                     addMore = true;
                     counter++;
                     break;
             
-                case 2:
+                case 2: //takes u back to menu (goes straight to returning the list of ingredients)
                     addMore = false;
                     break;
             }
             }
                 break;
         
-            case 2:
+            case 2:// takes u back to menu
 
                 break;
         }
@@ -382,21 +382,21 @@ public class User
 
     private void createRecipe()
     {
-        System.out.println("\nOptions: \n 1-Create a Meal \n 2-back");
+        System.out.println("\nOptions: \n 1-Create a Meal \n 2-back\n");
         int userInt = getUserInt(1,2);
 
         switch (userInt) {
             case 1:
             String name = getUserMealName(); // couldve added an option go back to here if the user mistyped the name, but ran we out of time. SO just send the user back to menu Lol
-            ArrayList<Ingredient> listOfIng = createListOfIngredients();
+            ArrayList<Ingredient> listOfIng = createListOfIngredients(); //creates a list of ingredients for the recipe
 
             Meal e = new Meal(name, listOfIng); 
             System.out.println("\nSucccessfully Added \"" + e.getMealName() +"\" to the list of available meals");
-            listMeals.addRecipe(e);
+            listMeals.addRecipe(e); // add the recipe to the list of recipes
             wait(727);
                 break;
         
-            case 2:
+            case 2: // takes u back to menu
             wait(272);
             System.out.println("\ngoing back...");
                 wait(727);
@@ -415,12 +415,12 @@ public class User
 
     }
     
-    private Ingredient createIngredientForRecipe() // user creates an ingredient //also used in meals
+    private Ingredient createIngredientForRecipe() // user creates an ingredient 
     {   
 
-        String name = getUserIngMealName();
-        Measurements measurement = getIngMeasurement();
-        float amount = getUserIngAmount();
+        String name = getUserIngMealName(); //get the name of the ing for MEAL
+        Measurements measurement = getIngMeasurement(); // get measurement (irrelevant tbh)
+        float amount = getUserIngAmount();  //get amount (relevant info)
 
 
         Ingredient userIng = new Ingredient(name, amount, measurement);
@@ -474,6 +474,7 @@ public class User
     private void makeMeal() // end result: removes ingredient from the inventory(quantity).
     {                       // if quantity of the said ingredient is 0, remove that ingredient from the list (fridge)
                             // if not enough ingredients, tell which ingredients are missing and how much(required - currently have)
+                            // some pseudocode^
         System.out.println("Select a meal to make: \n");            
         listMeals.displayMeals(); // display the recipes
         int posMealToMake = getUserInt(1, listMeals.getRecipeListSize()); // get which meal to make
@@ -499,7 +500,7 @@ public class User
                         {
                             case 1:
                                 cook(recipeListOfMeaL); // thing is named cook but really it just subtracts quantites lol
-                                table.addRecipe(mealToMake);
+                                table.addRecipe(mealToMake); // add meal to the table (where ur supposed to eat) makes sense right??
 
                                 break;
                             case 2:
@@ -568,7 +569,7 @@ public class User
         boolean continuePro = true; // as in continue program (lol)
         Ingredient fridgeIng;
     
-        for (Ingredient name : theRecipeInQuestion)
+        for (Ingredient name : theRecipeInQuestion) // for each ing, check if there is enough of the ing(amount) in fridge
         {   
             fridgeIng = null;
             boolean hasEnough = false;
@@ -577,13 +578,13 @@ public class User
             {   
                 if (name.getFoodName().equalsIgnoreCase(nameF.getFoodName()))
                 {
-                    if (name.getFoodAmount() <= nameF.getFoodAmount())
+                    if (name.getFoodAmount() <= nameF.getFoodAmount()) // checks if there is enough in fridge essentially
                     {
                         hasEnough = true;
                         fridgeIng = nameF;
                         break;
                     }
-                    else    // it just works?????????????
+                    else    // it just works????????????? what??????????
                     {
                         hasEnough = false;
                         fridgeIng = nameF;
