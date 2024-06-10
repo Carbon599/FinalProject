@@ -513,6 +513,7 @@ public class User
                         System.out.println("Missing ingredient quantity, moving back to menu...\n");
                         wait(575);
                         System.out.println("Add remaining quantity by going to: \"Manage Food\" >> \"Edit an Ingredient\"");
+                        wait(927);
                         break;
                 }
                 break;
@@ -522,6 +523,7 @@ public class User
                 System.out.println("Missing Ingredients, moving back to menu...");
                 wait(575);
                 System.out.println("Add missing ingredients by going to: \"Manage Food\" >> \"Add an Ingredient\"");
+                wait(927);
                 break;
         }
 
@@ -563,7 +565,7 @@ public class User
 
     private boolean compareListAmount(ArrayList<Ingredient> theRecipeInQuestion, ArrayList<Ingredient> fridge)
     {   
-        boolean continuePro = true;
+        boolean continuePro = true; // as in continue program (lol)
         Ingredient fridgeIng;
     
         for (Ingredient name : theRecipeInQuestion)
@@ -589,7 +591,7 @@ public class User
                 }
             }
     
-            if (hasEnough) // cleaned up the thing (there was a bug took an hour and a half to fix)
+            if (hasEnough) // cleaned up the thing (there was a bug, took an hour and a half to fix)
             {
                 System.out.println("Amount Required for " + name.getFoodName() + ": " + name.getFoodAmount() + 
                     " || Amount in Fridge: " + fridgeIng.getFoodName() + ": " + fridgeIng.getFoodAmount() + 
@@ -600,9 +602,9 @@ public class User
             {   
                 continuePro = false;
                 System.out.println("Amount Required for " + name.getFoodName() + ": " + name.getFoodAmount() + 
-                    " || Amount in Fridge: " + (fridgeIng != null ? fridgeIng.getFoodName() : "N/A") + ": " + 
-                    (fridgeIng != null ? fridgeIng.getFoodAmount() : 0) + " status : NOT enough");
-                System.out.println("Amount Missing: " + (name.getFoodAmount() - (fridgeIng != null ? fridgeIng.getFoodAmount() : 0)));
+                    " || Amount in Fridge: " + fridgeIng.getFoodName()+ ": " + 
+                    fridgeIng.getFoodAmount() + " status : NOT enough");
+                System.out.println("Amount Missing: " + (name.getFoodAmount() - fridgeIng.getFoodAmount()));
                 wait(200);
             }
         }
