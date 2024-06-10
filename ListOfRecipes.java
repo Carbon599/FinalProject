@@ -47,6 +47,7 @@ public class ListOfRecipes // where all recipes are stored
             
 
         }
+        System.out.println("\n");
     }
     public void displayRecipeForRemoval() //just modified what it says
     {   

@@ -9,6 +9,7 @@ public class Table extends ListOfRecipes // wow an extension
     {
         if (table.size()==0)
         {
+    
             System.out.println("There is no food in the table");
         }
         else

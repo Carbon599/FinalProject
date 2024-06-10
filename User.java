@@ -146,7 +146,9 @@ public class User
                 createRecipe(); // create a RECIPE
                 break;
             case 2:
+                wait(272);
                 listMeals.displayMeals(); // view RECIPEs
+                wait(272);
                 break;
 
             case 3:
@@ -408,7 +410,7 @@ public class User
     private Ingredient createIngredientForRecipe() // user creates an ingredient //also used in meals
     {   
 
-        String name = getUserIngName();
+        String name = getUserMealName();
         Measurements measurement = getIngMeasurement();
         float amount = getUserIngAmount();
 
@@ -424,9 +426,12 @@ public class User
     private Ingredient createIngredient() // user creates an ingredient 
     {   
 
-        String name = getUserIngName();                 // get the name (if user inputs a name that is already existing, ask again)
+        String name = getUserIngName();              // get the name (if user inputs a name that is already existing, ask again)
+        wait(272);
         Measurements measurement = getIngMeasurement(); // get the measurement
+        wait(272);
         float amount = getUserIngAmount();              // get the amount (if not a number base 10, ask again)
+        wait(272);
 
         Ingredient userIng = new Ingredient(name, amount, measurement); //create an Ingredient object 
         System.out.println("Successfully added " + userIng.getFoodName() +" to the Fridge\n");
@@ -439,7 +444,7 @@ public class User
         int itemToRemove = getUserInt(1, fridge.getFridgeSize()); // get the position of the ingredient to be removed
         wait(450);                                                 // I love waiting
         fridge.removeIngredient(itemToRemove-1);                      // remove the ingredient from the fridge!!!!!!!!
-        System.out.println("Ingredient removed successfully.");     // indeed
+        System.out.println("\nIngredient removed successfully.\n");     // indeed
         wait(750); 
     }
 
@@ -452,18 +457,19 @@ public class User
         ingredientToEdit.setFoodName(editUserIngName(ingredientToEdit.getFoodName()));            // Sets name
         ingredientToEdit.setFoodMeasurement(editIngMeasurement());  // Sets Measurement
         ingredientToEdit.setFoodAmount(editUserIngAmount());        // Sets Amount
-        System.out.println("Ingredient edited successfully.");   // Done :D
+        System.out.println("\nIngredient edited successfully.\n");   // Done :D
         wait(750);
     }
 
 
-    // ------------------------------MAKE A MEAL METHODS----------------------------------------------------------------------------
+    // ------------------------------METHODS-for-------------MAKE A MEAL------------------------------------------------
     private void makeMeal() // end result: removes ingredient from the inventory(quantity).
     {                       // if quantity of the said ingredient is 0, remove that ingredient from the list (fridge)
                             // if not enough ingredients, tell which ingredients are missing and how much(required - currently have)
         System.out.println("Select a meal to make: \n");            
         listMeals.displayMeals(); // display the recipes
         int posMealToMake = getUserInt(1, listMeals.getRecipeListSize()); // get which meal to make
+        wait(727);
         Meal mealToMake = listMeals.getMeal(posMealToMake-1);                   // a lot of getters
         ArrayList<Ingredient> recipeListOfMeaL = mealToMake.getIngredientsList(); 
         
@@ -472,13 +478,13 @@ public class User
         switch (switchType(continueMethod)) // switches true or false to 1 or 0, so it either continues with creating the meal or no 
         {
             case 1:
-                boolean continueMethod2 = compareListAmount(recipeListOfMeaL, fridge.getFridge()); // true or false
-                wait(1000);
+                boolean continueMethod2 = compareListAmount(recipeListOfMeaL, fridge.getFridge()); // true or false (this one took so long to bug fix)
+                wait(727);
                 switch (switchType(continueMethod2)) // same thing 
                 {
                     case 1:
                         System.out.println("Fridge has enough ingredients to create the meal.\n"+
-                                           "create the meal? \n1-yes\n2-no");
+                                           "create the meal? \n1-yes\n2-no\n\n");
                         int userChoice = getUserInt(1, 2);
 
                         switch (userChoice) // wow triple switches wow!
@@ -563,7 +569,7 @@ public class User
                         fridgeIng = nameF;
                         break;
                     }
-                    else
+                    else    // it just works?????????????
                     {
                         hasEnough = false;
                         fridgeIng = nameF;
@@ -571,7 +577,7 @@ public class User
                 }
             }
     
-            if (hasEnough) // cleaned up
+            if (hasEnough) // cleaned up the thing (there was a bug took an hour and a half to fix)
             {
                 System.out.println("Amount Required for " + name.getFoodName() + ": " + name.getFoodAmount() + 
                     " || Amount in Fridge: " + fridgeIng.getFoodName() + ": " + fridgeIng.getFoodAmount() + 
@@ -617,17 +623,18 @@ public class User
                     }
                 }   
                 i++;
-                                     
+
             }
         }
     }
 
+    //---------------------------VIEW MEALS YOU CREATED------------------(this is an extra add on, why not I guess)------
     private void viewMealCreated()
     {
+        wait(272);
         table.displayMeals();
+        wait(272);
     }
-
-    //---------------------------VIEW MEALS YOU CREATED------------------(this is an extra add on, why not I guess)------
 
     //the list scanners
     private boolean scanIngNames(String tryIngredient) // return true if there is a ingredient with the same name
