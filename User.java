@@ -138,7 +138,7 @@ public class User
         // user can add x amount of ingredients. something like:   1st pass:"1-add ingredient 2-finish"  2nd pass: "1-add another ingredient 2-finish meal"
 
         wait(400);
-        System.out.println("Kitchen:::: \n 1-Create a Recipe \n 2-View Recipes Available \n 3-Remove a Recipe \n 4-Make a MEAL\n 5-View Meals you cooked \n 6-Back");
+        System.out.println("\n\nOptions in Kitchen: \n 1-Create a Recipe \n 2-View Recipes Available \n 3-Remove a Recipe \n 4-Make a MEAL\n 5-View Meals you cooked \n 6-Back");
         int userInput = getUserInt(1, 6);
 
         switch (userInput) {
@@ -331,6 +331,14 @@ public class User
         return userInput.nextLine();
     }
 
+    private String getUserIngMealName()
+    {
+        System.out.println("Name of Ingredient: ");
+        Scanner userInput = new Scanner(System.in);
+
+        return userInput.nextLine();
+    }
+
 
     private ArrayList<Ingredient> createListOfIngredients() // 
     {   
@@ -410,7 +418,7 @@ public class User
     private Ingredient createIngredientForRecipe() // user creates an ingredient //also used in meals
     {   
 
-        String name = getUserMealName();
+        String name = getUserIngMealName();
         Measurements measurement = getIngMeasurement();
         float amount = getUserIngAmount();
 
@@ -483,8 +491,8 @@ public class User
                 switch (switchType(continueMethod2)) // same thing 
                 {
                     case 1:
-                        System.out.println("Fridge has enough ingredients to create the meal.\n"+
-                                           "create the meal? \n1-yes\n2-no\n\n");
+                        System.out.println("\nFridge has enough ingredients to create the meal.\n"+
+                                           "\nCreate the meal? \n1-yes\n2-no\n\n");
                         int userChoice = getUserInt(1, 2);
 
                         switch (userChoice) // wow triple switches wow!
@@ -501,15 +509,19 @@ public class User
                         break;
                 
                     case 0:
+                    wait(272);
                         System.out.println("Missing ingredient quantity, moving back to menu...\n");
-                        wait(727);
+                        wait(575);
+                        System.out.println("Add remaining quantity by going to: \"Manage Food\" >> \"Edit an Ingredient\"");
                         break;
                 }
                 break;
 
-            case 0:
+            case 0:                
+                wait(272);
                 System.out.println("Missing Ingredients, moving back to menu...");
-                wait(727);
+                wait(575);
+                System.out.println("Add missing ingredients by going to: \"Manage Food\" >> \"Add an Ingredient\"");
                 break;
         }
 
@@ -616,7 +628,7 @@ public class User
                     // this one straight up REMOVES the ingredient if amount is ZERO
                     if (fridge.getIngredient(i).getFoodAmount() == 0)
                     {
-                        System.out.println(name.getFoodName()+"stock exhausted. Removing from fridge...");
+                        System.out.println(name.getFoodName()+" stock exhausted. Removing from fridge...");
                         wait(200);
                         fridge.removeIngredient(i);
                         break;
