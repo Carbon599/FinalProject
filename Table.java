@@ -12,7 +12,7 @@ public class Table extends ListOfRecipes // wow an extension
     
             System.out.println("There is no food in the table");
         }
-        else
+        else 
         {
             int i = 1;
             for (Meal mealAt: table)
