@@ -581,11 +581,12 @@ public class User
         for (Ingredient name : theRecipeInQuestion)
         {
             int i = 0;
-            while (i<=fridge.getFridgeSize())
+            while (i<fridge.getFridgeSize())
             {
 
-                if (name.getFoodName().equalsIgnoreCase(fridge.getIngName(i))); // finds the ingredient with the same name to perform some subtraction
+                if (name.getFoodName().equalsIgnoreCase(fridge.getIngName(i))) // finds the ingredient with the same name to perform some subtraction
                 {   
+
                     // vv unreadable but basically it subtracts the amount in fridge by the amount required in the recipe
                     fridge.getIngredient(i).setFoodAmount(fridge.getIngredient(i).getFoodAmount()-name.getFoodAmount()); // unreadable 
                     System.out.println("Adding " + name.getFoodName() + " to the meal");
@@ -600,8 +601,7 @@ public class User
                         break;
                     }
                 }   
-                i++;
-                break;                                                        
+                i++;                                     
             }
         }
     }
