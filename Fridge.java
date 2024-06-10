@@ -81,14 +81,14 @@ public class Fridge
         for(int k = 0; k < fridge.size()-1; k++)
         {
 
-        for (int i = 0; i < fridge.size()-1; i++)
-        {
-            if (fridge.get(i).getFoodAmount()>fridge.get(i+1).getFoodAmount())
+            for (int i = 0; i < fridge.size()-1; i++)
             {
-                Collections.swap(fridge, i, (i+1)); // pls let this slide :)
+                if (fridge.get(i).getFoodAmount()>fridge.get(i+1).getFoodAmount())
+                {
+                    Collections.swap(fridge, i, (i+1)); // pls let this slide :)
+                }
             }
         }
-    }
 
     }
 
