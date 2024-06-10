@@ -407,9 +407,9 @@ public class User
     private void removeRecipe()
     {
         listMeals.displayRecipeForRemoval();
-        int recipeToRemove = getUserInt(0, listMeals.getRecipeListSize()-1);
+        int recipeToRemove = getUserInt(1, listMeals.getRecipeListSize());
         wait(450); 
-        listMeals.removeMeal(recipeToRemove);
+        listMeals.removeMeal(recipeToRemove-1);
         System.out.println("Recipie removed successfully...");
         wait(727);
 
