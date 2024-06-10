@@ -448,12 +448,23 @@ public class User
 
     private void removeIngredient() //user removes an ingredient from the fridge
     {
+        if(listMeals.getRecipeListSize() < 1)
+        {
         fridge.displayContentsForRemoval(); // displays the ingredient list for removal D:
         int itemToRemove = getUserInt(1, fridge.getFridgeSize()); // get the position of the ingredient to be removed
         wait(450);                                                 // I love waiting
         fridge.removeIngredient(itemToRemove-1);                      // remove the ingredient from the fridge!!!!!!!!
         System.out.println("\nIngredient removed successfully.\n");     // indeed
         wait(750); 
+        }
+        else
+        {
+            wait(575);
+            System.out.println("There are no recipes that can be made into a meal");
+            wait(575);
+            System.out.println("Create a recipe by going to: \"Manage Meal\" >> \"Create a Recipe\"");
+
+        }
     }
 
     private void editIngredient() //user edits an ingredient from the fridge
@@ -724,5 +735,4 @@ public class User
             return 0;
         }
     } 
-
 }
