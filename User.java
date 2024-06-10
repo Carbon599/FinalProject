@@ -27,8 +27,8 @@ public class User
         fridge.addIngredient(new Ingredient("chicken", 5,Measurements.kg));
         fridge.addIngredient(new Ingredient("milk", 4,Measurements.gal));
         fridge.addIngredient(new Ingredient("kiwi", 7,Measurements.pc));
-        fridge.addIngredient(new Ingredient("fries", 750,Measurements.g));
-        fridge.addIngredient(new Ingredient("gravy", 7,Measurements.pc));
+        fridge.addIngredient(new Ingredient("fries", 749,Measurements.g));
+        fridge.addIngredient(new Ingredient("gravy", 6,Measurements.pc));
         fridge.addIngredient(new Ingredient("salt", 20,Measurements.g));
 
         // add  apre-existing recipe for a meal
@@ -547,29 +547,44 @@ public class User
     {   
         boolean continuePro = true;
         Ingredient fridgeIng;
-
+    
         for (Ingredient name : theRecipeInQuestion)
         {   
             fridgeIng = null;
             boolean hasEnough = false;
+    
             for (Ingredient nameF: fridge)      // name is the "required amount", nameF is amount u have in fridge
-            {
-                if (name.getFoodAmount() <= nameF.getFoodAmount())
+            {   
+                if (name.getFoodName().equalsIgnoreCase(nameF.getFoodName()))
                 {
-                    hasEnough = true;
+                    if (name.getFoodAmount() <= nameF.getFoodAmount())
+                    {
+                        hasEnough = true;
+                        fridgeIng = nameF;
+                        break;
+                    }
+                    else
+                    {
+                        hasEnough = false;
+                        fridgeIng = nameF;
+                    }
                 }
-                fridgeIng = nameF;
             }
-            if(hasEnough)
+    
+            if (hasEnough) // cleaned up
             {
-                System.out.println("Amount Required for "+name.getFoodName()+": "+name.getFoodAmount()+ " || Amount in Fridge:"+name.getFoodName()+": "+name.getFoodAmount()+" status : has enough");
+                System.out.println("Amount Required for " + name.getFoodName() + ": " + name.getFoodAmount() + 
+                    " || Amount in Fridge: " + fridgeIng.getFoodName() + ": " + fridgeIng.getFoodAmount() + 
+                    " status : has enough");
                 wait(200);
             }
             else
             {   
                 continuePro = false;
-                System.out.println("Amount Required for "+name.getFoodName()+": "+name.getFoodAmount()+ " || Amount in Fridge:"+fridgeIng.getFoodName()+": "+fridgeIng.getFoodAmount()+" status : NOT enough");
-                System.out.println("Amount Missing: " + (name.getFoodAmount()-fridgeIng.getFoodAmount()));
+                System.out.println("Amount Required for " + name.getFoodName() + ": " + name.getFoodAmount() + 
+                    " || Amount in Fridge: " + (fridgeIng != null ? fridgeIng.getFoodName() : "N/A") + ": " + 
+                    (fridgeIng != null ? fridgeIng.getFoodAmount() : 0) + " status : NOT enough");
+                System.out.println("Amount Missing: " + (name.getFoodAmount() - (fridgeIng != null ? fridgeIng.getFoodAmount() : 0)));
                 wait(200);
             }
         }
@@ -601,7 +616,8 @@ public class User
                         break;
                     }
                 }   
-                i++;                                     
+                i++;
+                                     
             }
         }
     }
