@@ -475,6 +475,8 @@ public class User
     {                       // if quantity of the said ingredient is 0, remove that ingredient from the list (fridge)
                             // if not enough ingredients, tell which ingredients are missing and how much(required - currently have)
                             // some pseudocode^
+        if(listMeals.getRecipeListSize() < 1)
+        {
         System.out.println("Select a meal to make: \n");            
         listMeals.displayMeals(); // display the recipes
         int posMealToMake = getUserInt(1, listMeals.getRecipeListSize()); // get which meal to make
@@ -526,6 +528,16 @@ public class User
                 System.out.println("Add missing ingredients by going to: \"Manage Food\" >> \"Add an Ingredient\"");
                 wait(927);
                 break;
+            }
+
+        }
+        else
+        {
+            wait(575);
+            System.out.println("There are no recipes that can be made into a meal");
+            wait(575);
+            System.out.println("Create a recipe by going to: \"Manage Meal\" >> \"Create a Recipe\"");
+            
         }
 
 
