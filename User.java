@@ -448,7 +448,7 @@ public class User
 
     private void removeIngredient() //user removes an ingredient from the fridge
     {
-        if(listMeals.getRecipeListSize() < 1)
+        if(listMeals.getRecipeListSize() > 1)
         {
         fridge.displayContentsForRemoval(); // displays the ingredient list for removal D:
         int itemToRemove = getUserInt(1, fridge.getFridgeSize()); // get the position of the ingredient to be removed
@@ -486,7 +486,7 @@ public class User
     {                       // if quantity of the said ingredient is 0, remove that ingredient from the list (fridge)
                             // if not enough ingredients, tell which ingredients are missing and how much(required - currently have)
                             // some pseudocode^
-        if(listMeals.getRecipeListSize() < 1)
+        if(listMeals.getRecipeListSize() > 1)
         {
         System.out.println("Select a meal to make: \n");            
         listMeals.displayMeals(); // display the recipes
