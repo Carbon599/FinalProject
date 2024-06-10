@@ -30,4 +30,14 @@ public class Meal // create templates for a certain meal, check if fridge has en
     {
         this.name = newName;
     }
+
+    public void displayMealIngredients()
+    {
+        /* 
+        for (ArrayList<Ingredient> f: Meal) 
+        {
+            System.out.println(">> " + f.getFoodName() + ", " + f.getFoodAmount() + f.getFoodMeasurement());
+        }
+        System.out.println("\nI-----------------------------I\n");*/
+    }
 }

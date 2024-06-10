@@ -20,7 +20,7 @@ public class User
                                     "V   5-Exit the program\n"+
                                     "\n---------------------------\n";
     
-    User() // is used to add some pre existing ingredients and meals (idk how else to)
+    User() // is used to add some pre existing ingredients and meals (idk how else to) --[DO NOT MODIFY]--
     {
         // added some stuff in the fridge
         fridge.addIngredient(new Ingredient("egg", 3,Measurements.g));
@@ -29,6 +29,7 @@ public class User
         fridge.addIngredient(new Ingredient("kiwi", 7,Measurements.pc));
         fridge.addIngredient(new Ingredient("fries", 749,Measurements.g));
         fridge.addIngredient(new Ingredient("gravy", 6,Measurements.pc));
+        fridge.addIngredient(new Ingredient("salt", 20,Measurements.g));
         fridge.addIngredient(new Ingredient("salt", 20,Measurements.g));
 
         // add  apre-existing recipe for a meal
@@ -70,7 +71,7 @@ public class User
                 break;
 
                 case 5:
-                System.out.println("See you next time :D");
+                System.out.println("See you next time! :D");
                 wait(727);
                 runProgram = false;
                 //exit
@@ -253,7 +254,7 @@ public class User
 
     private String getUserIngName() // returns string
     {
-        System.out.println("Name of Ingredient: ");
+        System.out.println("Name of Ingredient (Singular Form): ");
         Scanner userInput = new Scanner(System.in);
         String ingredientName;
         do 
