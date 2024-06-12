@@ -7,10 +7,10 @@ public class Table extends ListOfRecipes // wow an extension
     @Override
     public void displayMeals()
     {
-        if (table.size()==0)
+        if (table.size() == 0)
         {
     
-            System.out.println("There is no food in the table");
+            System.out.println("There is no food on the table");
         }
         else 
         {

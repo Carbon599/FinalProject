@@ -83,7 +83,7 @@ public class Fridge
 
             for (int i = 0; i < fridge.size()-1; i++)
             {
-                if (fridge.get(i).getFoodAmount()>fridge.get(i+1).getFoodAmount())
+                if (fridge.get(i).getFoodAmount() > fridge.get(i+1).getFoodAmount())
                 {
                     Collections.swap(fridge, i, (i+1)); // pls let this slide :)
                 }
