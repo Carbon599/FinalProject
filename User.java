@@ -106,7 +106,7 @@ public class User
          */
 
         
-        System.out.println("Select operation: \n 1-Add ingredient \n 2-Remove ingredient \n3-Edit Ingredient\n 4-Back");
+        System.out.println("Select operation: \n 1-Add ingredient \n 2-Remove ingredient \n 3-Edit Ingredient\n 4-Back");
         int operation = getUserInt(1, 4);
 
         switch (operation) // will maybe add a feature where you can change the amount of the specified ingredient
